@@ -6,7 +6,7 @@ description: >
   implementation work needs bounded tasks, file mapping, verification mapping, or a persistent plan.
   Do not use this skill to author architecture, revise normative requirements, or perform coding.
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
   role: "contract-to-implementation-planner"
   companion: "engineering-contract-spec"
 ---
@@ -94,6 +94,14 @@ Run the Contract readiness gate before decomposing affected requirements. If the
 `CONTRACT NOT READY FOR IMPLEMENTATION PLANNING`, record the affected scope and stop that planning
 path. Unaffected requirements MAY continue.
 
+Before planning begins, apply the conditional Frozen Source Integrity Gate. If an authoritative
+Architecture Guide, Engineering Contract, or other source declares a freeze commit, freeze tag,
+checksum, SHA-256, or immutable revision, verify the current source against that declaration. A
+mismatch MUST stop affected planning; do not repair, reinterpret, or silently replace the frozen
+source. If no freeze metadata is declared, do not impose a new checksum or tag requirement.
+
+Read [references/frozen-source-integrity.md](references/frozen-source-integrity.md).
+
 ### 2. Requirement Inventory
 
 Inventory all requirements in the current scope and preserve their stable IDs or Section Anchors.
@@ -111,6 +119,44 @@ Planning labels MAY include:
 - conformance.
 
 These are planning labels, not a replacement for the Contract's canonical taxonomy.
+
+Every current-scope Requirement MUST receive an explicit disposition. Use semantic equivalents when
+the project already has them, but do not leave an `UNMAPPED` Requirement. At minimum distinguish
+existing evidence from work still required, using statuses such as `IMPLEMENTED`, `PARTIAL`,
+`PENDING`, `DRIFT`, `BLOCKED`, and `DEFERRED`.
+
+`IMPLEMENTED` at planning time means only that an implementation landing point was found in the
+current repository. It does not mean `VERIFIED`; promotion requires Contract-based verification in
+the Coding / Verification stage.
+
+Read [references/requirement-disposition.md](references/requirement-disposition.md).
+
+### 2a. Repository Reality Classification
+
+For each current-scope Requirement, classify repository evidence as at least:
+
+- Already implemented;
+- Partially implemented;
+- Implementation drift;
+- Missing;
+- Deferred.
+
+Existing code is evidence, not authority. If it runs or its tests pass but violates the authoritative
+Contract, mark `IMPLEMENTATION DRIFT`; do not reuse its wrong semantics, promote it to verified, or
+change the Contract to fit it.
+
+### 2b. Declared Gap Reconciliation
+
+Treat gap counts or TODO counts from Contracts, design documents, and old audit reports as planning
+inputs, not current repository truth. Re-audit them against the current repository and classify each
+as:
+
+- confirmed gap;
+- already resolved by the current repository;
+- additional implementation drift;
+- newly discovered gap.
+
+The Contract is behavior authority, not a live repository inventory database.
 
 ### 3. Dependency Graph
 
@@ -175,10 +221,26 @@ Every task file MUST identify:
 - definition of done;
 - open Contract issues.
 
+### Task Context Boundary Rule
+
+Each Task MUST also express:
+
+- **Architecture Constraints**: only the upstream principles needed by this Task, recorded as
+  stable anchors rather than copied documents;
+- **Conformance Landing**: the test, schema validation, runtime probe, fixture, conformance check,
+  or review evidence that will prove the mapped Requirement has a downstream landing;
+- **Forbidden Changes**: authoritative sources, unrelated architecture, and Task-specific areas
+  that must not be modified.
+
+The Task MUST fit a bounded implementation context. It should let a Coding Agent read the Task,
+re-read its exact Contract anchors, load the relevant repository files, and implement without
+loading the entire upstream document set into context.
+
 Task size should fit one bounded implementation context. Do not enforce an arbitrary file-count
 limit; split when the change surface makes behavior, review, or verification unclear.
 
-Read [references/task-template.md](references/task-template.md).
+Read [references/task-template.md](references/task-template.md) and
+[references/task-context-boundary.md](references/task-context-boundary.md).
 
 ## Execution Modes
 
@@ -211,6 +273,14 @@ OPEN CONTRACT ISSUE
 Do not solve a Contract gap by selecting a file, API, class, or task behavior as if it were a
 standard decision. Do not produce a plan that requires the coding Agent to guess.
 
+### Deferred Scope Containment
+
+Requirements or capabilities explicitly marked `DEFERRED`, `FUTURE`, `OUT OF CURRENT SCOPE`, or
+`PROFILE-LEVEL FUTURE` MUST NOT produce a current mandatory implementation Task. A Task is allowed
+only when the current Contract explicitly requires a compatibility placeholder, extension seam,
+reserved field, interface stub, or other forward-compatibility behavior. That Task may implement
+the seam only; it MUST NOT implement the deferred capability itself.
+
 ## Traceability and Final Gate
 
 Maintain a durable mapping at requirement level:
@@ -223,9 +293,17 @@ Requirement
     → Verification
 ```
 
-Audit that every current mandatory requirement has a task and verification landing point, every task
-has an upstream Contract anchor, dependencies are consistent, blocked issues are visible, and
-deferred scope is not accidentally mandatory.
+Audit that every current-scope Requirement has a disposition and is mapped to one of:
+
+- existing implementation evidence;
+- an implementation Task;
+- an explicit `BLOCKED` disposition.
+
+Do not mechanically create a duplicate Task for a Requirement that is already implemented. Confirm
+that `IMPLEMENTED` is evidence classification only, not verification. Every mandatory Requirement
+must have a clear downstream landing or an explicit blocker, and every Task must have an upstream
+Contract anchor, consistent dependencies, and a conformance landing. Check that deferred scope has
+not accidentally become mandatory work.
 
 Output exactly one final status:
 

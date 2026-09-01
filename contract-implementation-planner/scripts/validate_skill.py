@@ -6,22 +6,33 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "SKILL.md"
 EXPECTED_NAME = "contract-implementation-planner"
-EXPECTED_VERSION = "0.1.0"
+EXPECTED_VERSION = "0.2.0"
 REQUIRED_FILES = [
     "references/task-template.md",
     "references/dependency-planning.md",
     "references/vertical-slicing.md",
     "references/plan-gate.md",
+    "references/frozen-source-integrity.md",
+    "references/requirement-disposition.md",
+    "references/task-context-boundary.md",
 ]
-REQUIRED_SECTIONS = [
-    "Responsibility Boundary",
-    "Inputs",
-    "Outputs",
-    "Planning Pipeline",
-    "Atomic Task Contract",
-    "Execution Modes",
-    "Planner Guardrails",
-    "Traceability and Final Gate",
+REQUIRED_RULES = [
+    ("Responsibility Boundary", "Responsibility boundary"),
+    ("Inputs", "Inputs"),
+    ("Outputs", "Outputs"),
+    ("Planning Pipeline", "Planning pipeline"),
+    ("Atomic Task Contract", "Atomic task contract"),
+    ("Execution Modes", "Execution modes"),
+    ("Planner Guardrails", "Planner guardrails"),
+    ("Traceability and Final Gate", "Traceability and final gate"),
+    ("Frozen Source Integrity Gate", "Frozen source integrity"),
+    ("explicit disposition", "Requirement disposition completeness"),
+    ("Repository Reality Classification", "Repository reality classification"),
+    ("Declared Gap Reconciliation", "Declared gap reconciliation"),
+    ("Architecture Constraints", "Task architecture constraints"),
+    ("Conformance Landing", "Task conformance landing"),
+    ("Task Context Boundary Rule", "bounded Task context"),
+    ("Deferred Scope Containment", "Deferred scope guard"),
 ]
 FORBIDDEN_CORE_TOKENS = (
     "Claude",
@@ -56,9 +67,9 @@ def main() -> int:
         if not (ROOT / rel).is_file():
             errors.append(f"Missing {rel}")
 
-    for section in REQUIRED_SECTIONS:
-        if f"## {section}" not in text:
-            errors.append(f"Missing core section: {section}")
+    for marker, label in REQUIRED_RULES:
+        if marker not in text:
+            errors.append(f"Missing core rule: {label}")
 
     for token in FORBIDDEN_CORE_TOKENS:
         if token.lower() in text.lower():

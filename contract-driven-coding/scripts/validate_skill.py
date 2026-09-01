@@ -6,7 +6,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "SKILL.md"
 EXPECTED_NAME = "contract-driven-coding"
-EXPECTED_VERSION = "0.1.0"
+EXPECTED_VERSION = "0.1.1"
 REQUIRED_FILES = [
     "references/execution-tracker.md",
     "references/pre-task-check.md",
@@ -26,6 +26,7 @@ REQUIRED_SECTIONS = [
     "Completion Reviews",
     "Worktree and Execution Modes",
     "Final Verification",
+    "Disposition Promotion Rule",
 ]
 FORBIDDEN_CORE_TOKENS = (
     "Claude",
@@ -63,6 +64,15 @@ def main() -> int:
     for section in REQUIRED_SECTIONS:
         if f"## {section}" not in text:
             errors.append(f"Missing core section: {section}")
+
+    for marker, label in [
+        ("`IMPLEMENTED` from the Planning stage", "planning IMPLEMENTED meaning"),
+        ("MUST NOT be promoted automatically to `VERIFIED`", "promotion prohibition"),
+        ("reread the Requirement / Section Anchor", "authoritative reread before promotion"),
+        ("inspect the conformance landing and evidence", "conformance evidence inspection"),
+    ]:
+        if marker not in text:
+            errors.append(f"Missing promotion rule: {label}")
 
     for token in FORBIDDEN_CORE_TOKENS:
         if token.lower() in text.lower():

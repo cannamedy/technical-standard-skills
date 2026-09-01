@@ -15,3 +15,16 @@ vendored here.
 
 No substantial third-party Skill source text or code is copied into this repository. No third-party
 attribution or license notice is required beyond the source links used as design references.
+
+## Internal Workflow Learnings
+
+The following rules were distilled from real Contract → Planning workflow practice. They are
+general workflow controls, not product- or architecture-specific requirements:
+
+- frozen source integrity before planning;
+- complete Requirement dispositions;
+- repository reality classified separately from Contract authority;
+- declared gap counts reconciled against the current repository;
+- bounded Task context with stable anchors and explicit conformance landing;
+- deferred scope prevented from becoming mandatory work;
+- implementation dispositions promoted to verification only after Contract-based evidence.

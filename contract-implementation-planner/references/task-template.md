@@ -15,6 +15,9 @@ removing the authority and verification anchors.
 - Contract: `path/to/contract.md#section`
 - Requirement: `REQ-...`
 
+## Architecture Constraints
+- Stable upstream principle / section anchors needed by this Task only.
+
 ## Dependencies
 
 ## Current State
@@ -27,6 +30,9 @@ removing the authority and verification anchors.
 
 ## Files / Areas Forbidden
 
+## Conformance Landing
+- Test, schema validation, runtime probe, fixture, conformance check, or review evidence.
+
 ## Test / Verification
 
 ## Acceptance Criteria
@@ -38,4 +44,7 @@ removing the authority and verification anchors.
 ```
 
 `Files Allowed / Expected` is the implementation plan's file map. It is not a new normative
-requirement in the Engineering Contract.
+requirement in the Engineering Contract. Keep authoritative sources, unrelated architecture, and
+Task-specific forbidden areas explicit under `Files / Areas Forbidden`. The task must remain small
+enough for a bounded implementation context; link stable anchors instead of copying full upstream
+documents.

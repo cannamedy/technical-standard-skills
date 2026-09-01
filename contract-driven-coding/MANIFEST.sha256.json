@@ -1,0 +1,10 @@
+{
+  "SKILL.md": "01ce4ebb5bda791f3d239a7454e0676b5960eb85b9f97598066f0a5ec9235f56",
+  "references/execution-modes.md": "548f069464568a5d183302caf43dae189bea80e70c9ed80703c650f057f066f0",
+  "references/execution-tracker.md": "5341935ce1fa753e87657ae1820748969d6d7637c07c12e065a65bcf870485b4",
+  "references/final-verification.md": "37f4aadb19a285f8e995ec14cc372568c32e2a79791674395a6324c5380c78cd",
+  "references/pre-task-check.md": "439580ae16cd9296bde105328f0fe6da0c9dc5a52f4a8829025a62f21f085fd9",
+  "references/spec-compliance-review.md": "085365d6dbea34bf042dc04a7404bed4ed8935a940535da2bfa582ddb0a691d2",
+  "references/tdd-workflow.md": "b765033217150c0b9add7578eed8227731a8ce76e34937b5085814d19224d129",
+  "scripts/validate_skill.py": "496c8cf896d906cf3f437f27158abcb6f9b747efa619e0fdf8bd7eb83e9d1f60"
+}

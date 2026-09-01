@@ -16,4 +16,6 @@ Reject circular dependencies. If the cycle represents an unresolved architecture
 Contract issue instead of breaking the cycle arbitrarily.
 
 The final audit checks that every task is reachable from an approved Contract requirement and that
-every mandatory requirement reaches at least one task and one verification method.
+every current mandatory requirement maps to existing implementation evidence, an implementation
+Task, or an explicit `BLOCKED` disposition. A Requirement already supported by evidence does not
+need a duplicate Task, but it still needs a verification status later in the workflow.

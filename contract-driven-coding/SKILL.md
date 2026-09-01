@@ -6,7 +6,7 @@ description: >
   be constrained by durable specifications and traceability. Do not use this skill to invent
   architecture, modify the Contract, or silently expand implementation scope.
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
   role: "contract-bound-coding-executor"
   companion: "engineering-contract-spec"
 ---
@@ -80,6 +80,25 @@ Recommended statuses are `PENDING`, `IN_PROGRESS`, `IMPLEMENTED`, `VERIFIED`, `B
 belong in Git; scratch notes and raw logs do not.
 
 Read [references/execution-tracker.md](references/execution-tracker.md).
+
+## Disposition Promotion Rule
+
+`IMPLEMENTED` from the Planning stage means only that repository evidence identified an
+implementation landing point. It MUST NOT be promoted automatically to `VERIFIED`.
+
+Promotion to `VERIFIED` requires all applicable evidence to be completed against the authoritative
+Contract:
+
+- reread the Requirement / Section Anchor;
+- inspect the implementation and its diff;
+- run the required tests or deterministic checks;
+- inspect the conformance landing and evidence.
+
+If the implementation conflicts with the Contract, do not promote it. Use an appropriate
+`DRIFT`, `BLOCKED`, `CONTRACT_ISSUE`, or `PLAN / TASK DEFECT` disposition and stop the affected
+workflow as required.
+
+Read [references/final-verification.md](references/final-verification.md).
 
 ## Test and Verification Workflow
 
