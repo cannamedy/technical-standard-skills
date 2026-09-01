@@ -77,7 +77,7 @@ Default to removing publication prose whose primary purpose is to describe:
 - which Skill created it;
 - which draft was the "golden master";
 - what happened in the current editing round;
-- what Codex or another model did;
+- what an Agent or another model did;
 - whether the document is "human-readable";
 - what internal review workflow produced it;
 - whether it is "Git Commit Ready."

@@ -1,4 +1,4 @@
-# technical-document-publisher v0.2
+# technical-document-publisher v0.3.0
 
 A thin publication-orchestration skill.
 
@@ -24,4 +24,4 @@ Responsibilities:
 - require full-page render QA through `doc`;
 - keep technical authoring separate from publication.
 
-Version 0.2 replaces the earlier heavier prototype.
+Version 0.3 retains the thin publication-orchestration boundary.

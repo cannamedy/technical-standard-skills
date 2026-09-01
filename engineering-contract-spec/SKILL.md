@@ -8,10 +8,10 @@ description: >
   implementation correctness, deterministic behavior, testability, or AI coding constraints matter.
   Do not use this skill as the primary human-oriented architecture white paper.
 compatibility: >
-  Agent Skills-compatible clients including Codex. Best used alongside source code, schemas, tests,
+  Agent Skills-compatible clients. Best used alongside source code, schemas, tests,
   and a human-centered architecture guide when available.
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
   role: "ai-engineering-contract"
   companion: "technical-specification-guide"
 ---
@@ -403,9 +403,147 @@ For critical rules, define as applicable:
 
 Read `references/traceability.md`.
 
+## Contract vs Implementation Separation
+
+The Engineering Contract defines:
+- what MUST be true;
+- what is allowed or forbidden;
+- what fails and how rejection is observed;
+- who owns each fact;
+- required runtime semantics;
+- how conformance can be determined.
+
+It MUST NOT prescribe incidental implementation structure by default, including:
+- source-code file paths;
+- class or function names;
+- internal module layout;
+- a particular third-party library;
+- implementation tasks.
+
+Those details belong in `contract-implementation-planner` unless they are themselves an external
+compatibility contract. The contract constrains implementation behavior; it does not prescribe
+incidental implementation structure.
+
+Read `references/contract-implementation-separation.md`.
+
+## Concrete Boundary Contracts
+
+For each important external, module, or protocol boundary, specify the applicable parts of:
+- contract name;
+- owner or authority;
+- input and output;
+- preconditions and postconditions;
+- expected failures and rejection behavior;
+- mutability and idempotency;
+- timeout, cancellation, and ordering;
+- freshness;
+- permission or safety gate;
+- observability or audit;
+- extension behavior.
+
+Not every dimension applies to every boundary. Omitted dimensions MUST NOT leave a load-bearing
+behavior to implementation guesswork.
+
+Read `references/boundary-contract.md`.
+
+## Verifiable Behavior and Requirement Classification
+
+An observable runtime requirement SHOULD identify a condition or trigger, expected behavior,
+failure or rejection behavior, and a verification method. `Given / When / Then` is an allowed
+expression, not a mandatory format.
+
+Classify important requirements as applicable:
+- Runtime-testable;
+- Schema-testable;
+- Static-conformance-testable;
+- Integration-testable;
+- Safety-testable;
+- Review-only / not automatically testable.
+
+Review-only requirements MUST explain why deterministic automation is not suitable. Schema
+invariants, static constraints, namespace rules, and immutable identity rules MAY be verified by
+schema validation, static validation, contract inspection, or conformance checks. Do not require a
+scenario for every requirement mechanically.
+
+Read `references/verifiable-behavior.md`.
+
+## Open Contract Issue Protocol
+
+When the source architecture does not determine a load-bearing engineering behavior, do not guess.
+Record an `OPEN CONTRACT ISSUE` with at least:
+- Issue ID;
+- source principle or section;
+- affected requirements;
+- missing decision;
+- why implementation cannot safely infer it;
+- downstream tasks blocked;
+- proposed options when useful;
+- resolution status.
+
+A load-bearing open issue MUST block downstream planning and coding for the affected behavior.
+Unrelated requirements MAY continue through the workflow.
+
+Read `references/open-contract-issue.md`.
+
+## Contract Readiness Gate
+
+Before implementation planning, check:
+- canonical terms are stable;
+- the architecture source is identified;
+- important requirements have stable IDs or section anchors;
+- major boundaries are defined;
+- state machines are sufficient for the claimed scope;
+- expected failures and authority are defined;
+- safety responsibility is defined where applicable;
+- conformance has a landing point;
+- load-bearing open contract issues are resolved;
+- deferred items are separate from current mandatory scope.
+
+Output exactly one status:
+
+`CONTRACT READY FOR IMPLEMENTATION PLANNING`
+
+or
+
+`CONTRACT NOT READY FOR IMPLEMENTATION PLANNING`
+
+The second status does not prevent work on unaffected requirements.
+
+Read `references/contract-readiness.md`.
+
+## Downstream Execution Anchors
+
+Planner and Coding workflows MUST use a stable Requirement ID or Section Anchor as the execution
+anchor. The contract does not generate a file map, atomic task list, or coding sequence; those are
+downstream planning artifacts.
+
+The traceability chain remains:
+
+```text
+Human Guide Principle
+        ↓
+Normative Clause
+        ↓
+Schema / Contract Element
+        ↓
+Runtime Semantics / State Machine
+        ↓
+Conformance Requirement
+        ↓
+Executable Test
+        ↓
+Reference Implementation / Example
+```
+
+## Agent-Neutrality
+
+The core Contract workflow is tool- and Agent-neutral. It MUST NOT require a named coding product,
+vendor command, task API, permission API, or subagent API. Platform-specific integration MAY exist
+only as an optional adapter or example and MUST NOT alter the Contract / Plan / Task semantics.
+
 ## AI coding guardrails
 
-When this contract will guide Codex or another coding agent, explicitly state:
+When this contract will guide a coding agent, explicitly state:
 - what the AI may change;
 - what it must not reinterpret;
 - source-of-truth documents;

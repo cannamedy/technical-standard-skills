@@ -3,3 +3,11 @@ __pycache__/
 .DS_Store
 *.swp
 *.tmp
+
+# Temporary agent material must not become a source artifact.
+scratch/
+.agent-work/
+*.agent.log
+*.subagent.log
+*.prompt.tmp
+*.reasoning.tmp

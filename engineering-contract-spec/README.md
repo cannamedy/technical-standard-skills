@@ -1,4 +1,4 @@
-# engineering-contract-spec
+# engineering-contract-spec v0.3.0
 
 AI + engineer oriented engineering-contract skill.
 
@@ -7,4 +7,4 @@ contracts.
 
 Companion skill: technical-specification-guide.
 
-Version: 0.1.0
+Version: 0.3.0
