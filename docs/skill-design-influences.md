@@ -28,3 +28,9 @@ general workflow controls, not product- or architecture-specific requirements:
 - bounded Task context with stable anchors and explicit conformance landing;
 - deferred scope prevented from becoming mandatory work;
 - implementation dispositions promoted to verification only after Contract-based evidence.
+- scope-aware working-tree audit that distinguishes expected target artifacts from unrelated
+  contamination;
+- non-sticky post-patch Gate evaluation that recomputes current status after remediation.
+
+These controls came from real Contract → Planning → Compatibility Audit workflow practice. They are
+generic planner workflow learnings, not requirements or details of any one product repository.

@@ -6,7 +6,7 @@ description: >
   implementation work needs bounded tasks, file mapping, verification mapping, or a persistent plan.
   Do not use this skill to author architecture, revise normative requirements, or perform coding.
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
   role: "contract-to-implementation-planner"
   companion: "engineering-contract-spec"
 ---
@@ -256,6 +256,36 @@ execution, but does not authorize architecture changes, Contract mutation, destr
 external side effects.
 
 Read [references/plan-gate.md](references/plan-gate.md).
+
+## Scope-Aware Working Tree Gate
+
+A non-clean working tree is not by itself a planning blocker. Classify changes by scope before
+deciding whether the requested planning or audit can proceed.
+
+- **Expected Target Artifacts**: Plan, Task, traceability, and audit-report artifacts within the
+  declared target scope MAY be untracked or modified. Do not stop solely because those artifacts
+  are not committed.
+- **Frozen Authoritative Sources**: A modified, conflicting, or checksum/revision-mismatched
+  authoritative Guide, Contract, or other frozen source triggers the Frozen Source Integrity Gate
+  and MUST stop affected planning.
+- **Unexpected Unrelated Changes**: Assess unrelated tracked, untracked, generated, source, or
+  merge-conflict changes for contamination of repository reality, file mapping, dependencies, or
+  verification. Continue only when the affected scope can be reliably isolated, and record the
+  contamination boundary; otherwise STOP.
+
+Working-tree cleanliness is evidence about audit isolation, not an authority condition. It MUST NOT
+be used as an unconditional planner prerequisite.
+
+## Post-Patch Gate Re-evaluation
+
+A Gate result describes the Current State of the artifact, not a historical defect state. After an
+authorized planning-artifact patch, the Planner MUST reread the current artifact, rerun affected
+validations, and recompute the Gate. Record the Historical Transition separately from the current
+state.
+
+`REQUIRES MINIMAL PATCH` may remain in the audit trail as a historical transition, but a historical
+defect alone MUST NOT keep the current Gate blocked. If the Current State has no remaining defects,
+report the current compatible or ready state; do not preserve a sticky failure state.
 
 ## Planner Guardrails
 

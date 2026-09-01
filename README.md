@@ -6,7 +6,7 @@ Reusable, Agent-neutral Skills for technical standard architecture, engineering 
 
 - technical-specification-guide v0.3.0
 - engineering-contract-spec v0.3.0
-- contract-implementation-planner v0.2.0
+- contract-implementation-planner v0.2.1
 - contract-driven-coding v0.1.1
 - technical-document-publisher v0.3.0
 
@@ -14,7 +14,7 @@ Reusable, Agent-neutral Skills for technical standard architecture, engineering 
 
 - technical-specification-guide v0.3.0
 - engineering-contract-spec v0.3.0
-- contract-implementation-planner v0.2.0
+- contract-implementation-planner v0.2.1
 - contract-driven-coding v0.1.1
 - technical-document-publisher v0.3.0
 

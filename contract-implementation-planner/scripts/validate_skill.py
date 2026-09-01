@@ -6,7 +6,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "SKILL.md"
 EXPECTED_NAME = "contract-implementation-planner"
-EXPECTED_VERSION = "0.2.0"
+EXPECTED_VERSION = "0.2.1"
 REQUIRED_FILES = [
     "references/task-template.md",
     "references/dependency-planning.md",
@@ -33,6 +33,17 @@ REQUIRED_RULES = [
     ("Conformance Landing", "Task conformance landing"),
     ("Task Context Boundary Rule", "bounded Task context"),
     ("Deferred Scope Containment", "Deferred scope guard"),
+    ("Scope-Aware Working Tree Gate", "scope-aware working-tree gate"),
+    ("Expected Target Artifacts", "expected target artifacts"),
+    ("Frozen Authoritative Sources", "frozen authoritative sources"),
+    ("Unexpected Unrelated Changes", "unexpected unrelated changes"),
+    ("not an authority condition", "working-tree authority boundary"),
+    ("Post-Patch Gate Re-evaluation", "post-patch gate re-evaluation"),
+    ("Current State", "current gate state"),
+    ("Historical Transition", "historical gate transition"),
+    ("recompute the Gate", "post-patch recomputation"),
+    ("historical defect", "historical defect handling"),
+    ("remaining defects", "remaining-defect handling"),
 ]
 FORBIDDEN_CORE_TOKENS = (
     "Claude",

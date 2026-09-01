@@ -1,11 +1,11 @@
 {
-  "SKILL.md": "8325592b1fcefd953233120997f351893ca1abccc70c46c4b19d645c81df0ffe",
+  "SKILL.md": "cd94675d1b48e530c68eb715becc2e048d3a299f6552dcbbfa8746eb05d47093",
   "references/dependency-planning.md": "de2033b05265189a23097c832e3a695083c58fbea7de8f541f361100f8644bb3",
   "references/frozen-source-integrity.md": "718753432533ffe9b258407982f1ba9914caaa359456ddf1ab2b8f42e0cd9255",
-  "references/plan-gate.md": "dc5b4e359f59c9ea518a52c4004d52b3039e56c0bd474ee5b3fdc7c95c094e05",
+  "references/plan-gate.md": "e890b71f581411a0e628f7e19a5075e41b1e882029976cf15e9892f1e5a66ac1",
   "references/requirement-disposition.md": "b2a90a7ffe97bf743efab877e8c65bdab7e1821711a59b8730a0add30d76a5c4",
   "references/task-context-boundary.md": "dcd475259400af2902f965c78d962376e8c8ebd8437471cc6f8f435689719086",
   "references/task-template.md": "24290bbb1ebe53391e0b2f8608f421e4ed47bb5359a88a428a2679e53f538142",
   "references/vertical-slicing.md": "8d697045854471a7aaf82b21e441da9ff13600875b8e7ad5729bd87f1d96089b",
-  "scripts/validate_skill.py": "1bd0c11d2ff1f2390f80407a264f8cf0544bc246841428d7d4e26ecc29068523"
+  "scripts/validate_skill.py": "a7be8a11e17651bdc8418c62c4c420c0a0dab161bf283d5c86c076bfa8494f30"
 }
