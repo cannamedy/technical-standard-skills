@@ -1,0 +1,12 @@
+{
+  "README.md": "78fb57e614de99c338539d7c505c4e4adf35787c286c7fe525d92748fc4bfb1c",
+  "SKILL.md": "b4360766f1472ef0deb24fed45a564e92c00729e263d7fd4d1a332076c0ab30b",
+  "examples/activation-examples.md": "9a37f162a071b3fc8eff5994c07257bf62b79b320a61f3329cdf6635840d5149",
+  "references/normative-contract.md": "4d34b97b30e47e8c224d365fb1abd58b5fcf58af7162402b976ae146961d536a",
+  "references/review-severity.md": "9d8a0cd4194f6a18e8bf7a628d3a35cca136c9e0b248074d7a339b77bb03746d",
+  "references/safety-contract.md": "04b0dd7d38e3ee26144a201d9fc26e3fd4660cfdeddf812d59e5147592535342",
+  "references/schema-contract.md": "3bfd5167556aee8ab11bc6d5d8b868f5975daf8b929276c1bcd693a56691ff45",
+  "references/state-machine.md": "bf73cfe978229db5b9bd910b57b8e6bfd39942fb83b454c07e3c69b89d280f61",
+  "references/traceability.md": "598bcf576c21ea28117cb90cde65f05219b13a1663c28b556a2a03358134219d",
+  "scripts/validate_skill.py": "681cb06d613333c3a4c646a8173e7b210e6543ae8b21dd64d71d7c03384626cc"
+}

@@ -1,0 +1,11 @@
+{
+  "README.md": "730635c47e000539014a70635ed467ee3541fc789978ff28d658e4ec3dddf9a3",
+  "SKILL.md": "7ddfc64dc4344a3b79ef321ee55ec181971f459c736f906e0e4829ab966d8026",
+  "examples/activation-examples.md": "01affec2eab6714ddfc5233ad87ea22ebdaec68a105449d936e9ef1b611a507a",
+  "references/content-fidelity.md": "16d44dba8b4829a8b8a261820dcd1fae455032f657e0195c78eeec60c01b8537",
+  "references/pais-profile-notes.md": "4e2f37e5e62519d50a1f75fc0aa03dc8750c47b998b940b065e811ec6de3cbd6",
+  "references/publication-profile.md": "00e565fb98d4eb2e9307477f82e115a52114e0b2e290a175ddea02e1fdd5aa84",
+  "references/publication-workflow.md": "98b4e6030b0cba782abec7e20c6b7c56227deec77717ff3dccc24968405bce98",
+  "references/source-of-truth.md": "72eb274d48bfb4c6756c5bd29ce64a4d2294f16bea8a8c9b3c2dc0b72da0cd78",
+  "scripts/validate_skill.py": "6e9fbc9467eb3c878b478192ba160f3adc67cc8b5fa76b5aeeea38c85e812166"
+}

@@ -1,0 +1,27 @@
+interface:
+  display_name: engineering contract spec
+  short_description: 'Create, formalize, extend, or review machine-actionable engineering
+    specifications used by AI coding
+
+    agents and engineers to implement interoperable systems without architectural
+    guesswork. Use for
+
+    normative clauses, schemas, object contracts, state machines, authority rules,
+    lifecycle semantics,
+
+    discovery profiles, safety contracts, compatibility rules, and conformance traceability.
+    Use when
+
+    implementation correctness, deterministic behavior, testability, or AI coding
+    constraints matter.
+
+    Do not use this skill as the primary human-oriented architecture white paper.'
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

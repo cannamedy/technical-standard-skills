@@ -1,0 +1,33 @@
+interface:
+  display_name: technical specification guide
+  short_description: 'Create, extend, or review detailed human-readable technical
+    architecture guides and white papers
+
+    that preserve technical depth while helping first-time readers understand why
+    a system is designed
+
+    the way it is. Use for PAIS, Physical AI, robotics, distributed systems, runtimes,
+    protocols,
+
+    architecture principles, and similar systems when the user wants one coherent,
+    detailed technical
+
+    document with rationale, examples, counterexamples, diagrams, and architecture
+    reasoning.
+
+    When a user provides a golden/master document, preserve its information and narrative
+    unless an
+
+    explicit change is requested. Do not silently simplify, invent architecture, or
+    insert writing-process
+
+    language into the publication.'
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
