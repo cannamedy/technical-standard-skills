@@ -32,5 +32,11 @@ general workflow controls, not product- or architecture-specific requirements:
   contamination;
 - non-sticky post-patch Gate evaluation that recomputes current status after remediation.
 
+The deep architecture audit methodology was also distilled from the same workflow: concept closure,
+layer responsibility, taxonomy orthogonality, guarantee boundaries, cross-section consistency,
+architecture independence, reader mental models, and Human Guide → Engineering Contract handoff.
+Structured findings preserve evidence, reasoning, risk, recommendation, and ownership without
+turning product-specific conclusions into generic rules.
+
 These controls came from real Contract → Planning → Compatibility Audit workflow practice. They are
 generic planner workflow learnings, not requirements or details of any one product repository.

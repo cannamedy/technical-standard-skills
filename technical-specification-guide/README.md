@@ -1,4 +1,4 @@
-# technical-specification-guide v0.3.0
+# technical-specification-guide v0.4.0
 
 Purpose:
 
@@ -15,6 +15,14 @@ Key v0.2 changes:
 - Publication Cleanliness
 - Direct Artifact Acceptance Review
 - Publication QA
+
+Key v0.4 changes:
+- Deep Architecture Audit methodology;
+- Concept Closure and Layer Responsibility checks;
+- Orthogonal Taxonomy and Responsibility / Guarantee boundary checks;
+- Cross-Section Concept Consistency and Architecture Independence checks;
+- Reader Mental Model Integrity and Human Guide → Engineering Contract handoff;
+- Structured, ownership-aware audit findings.
 
 The v0.2 philosophy is deliberately more restrained than v0.1:
 do less rewriting, preserve more information, and require the final document to be demonstrably better than the preferred source.

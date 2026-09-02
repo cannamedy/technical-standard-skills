@@ -12,6 +12,7 @@ required = [
     "references/golden-master-preservation.md",
     "references/no-silent-invention.md",
     "references/semantic-propagation.md",
+    "references/deep-architecture-audit.md",
     "references/review-method.md",
     "references/publication-qa.md",
     "references/reasoning-questions.md",
@@ -31,7 +32,7 @@ else:
         front = m.group(1)
         if not re.search(r"^name:\s*technical-specification-guide\s*$", front, re.M):
             errors.append("Wrong skill name")
-        if 'version: "0.3.0"' not in front:
+        if not re.search(r'^  version:\s*["\']0\.4\.0["\']\s*$', front, re.M):
             errors.append("Wrong version")
         if "description:" not in front:
             errors.append("Missing description")
@@ -41,6 +42,7 @@ for rel in required:
         errors.append(f"Missing {rel}")
 
 text = skill.read_text(encoding="utf-8") if skill.exists() else ""
+normalized_text = re.sub(r"\s+", " ", text).lower()
 for phrase in [
     "Reader value rule",
     "Golden master preservation mode",
@@ -50,9 +52,36 @@ for phrase in [
     "Publication cleanliness",
     "Conceptual expansion budget",
     "Acceptance review mode",
+    "Deep Architecture Audit",
+    "Concept Closure",
+    "Layer Responsibility",
+    "Orthogonal Taxonomy",
+    "Responsibility & Guarantee Boundary",
+    "Cross-Section Concept Consistency",
+    "Architecture Independence",
+    "Reader Mental Model Integrity",
+    "Human Guide → Engineering Contract Handoff",
+    "Finding",
+    "Audit Principle",
+    "Evidence",
+    "Reasoning",
+    "Risk",
+    "Recommendation",
+    "Ownership",
+    "as applicable",
+    "not a fixed publication template",
+    "MUST actively perform Independence and Boundary checks",
+    "complete schema",
 ]:
-    if phrase.lower() not in text.lower():
+    if phrase.lower() not in normalized_text:
         errors.append(f"Missing core rule: {phrase}")
+
+deep_audit = root / "references/deep-architecture-audit.md"
+if deep_audit.exists():
+    deep_text = deep_audit.read_text(encoding="utf-8")
+    for token in ("PAIS", "NodeIdentity", "ESTUN"):
+        if token.lower() in deep_text.lower():
+            errors.append(f"Deep audit reference contains project-specific token: {token}")
 
 if errors:
     print("INVALID")

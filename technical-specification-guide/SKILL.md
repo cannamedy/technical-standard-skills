@@ -10,7 +10,7 @@ description: >
   explicit change is requested. Do not silently simplify, invent architecture, or insert writing-process
   language into the publication.
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
   role: "human-readable-detailed-technical-guide"
 ---
 
@@ -211,6 +211,57 @@ from the existence of a root object. “First clarify the standardized atom, the
 model.” Changing the root object is an architecture decision, not a terminology-only substitution.
 
 ---
+
+## 3.2 Deep Architecture Audit Method
+
+When reviewing a standard, protocol, platform architecture, layered system, runtime, interface
+standard, Agent or device architecture, Task / World / Capability model, or safety / permission
+architecture, activate the **Deep Architecture Audit**. This is a reasoning method, not a fixed
+publication template: apply the checks that fit the document and its declared scope.
+
+The audit checks, as applicable, are:
+
+- **Concept Closure**: whether a core concept forms a reader-usable loop from identity, purpose,
+  neighbors, layer, responsibility, ownership, consumption, normal behavior, failure boundaries,
+  and later use—not merely whether it has a definition;
+- **Layer Responsibility**: whether responsibilities stay within their layer, with upward leakage,
+  downward leakage, responsibility creep, and abstraction leakage named at the crossed boundary;
+- **Orthogonal Taxonomy**: whether type, state, location, source, lifecycle, capability, profile,
+  and implementation labels answer the same question before being made one taxonomy;
+- **Responsibility & Guarantee Boundary**: whether names such as Safety, Security, Authority,
+  Validation, Recovery, Supervisor, Controller, Compliance, or Trust imply guarantees or ownership
+  that the architecture does not provide;
+- **Cross-Section Concept Consistency**: whether a concept remains stable across Definition,
+  Principle, Object Model, Runtime, Example, and Roadmap;
+- **Architecture Independence**: whether claims such as independent, reusable, vendor-neutral,
+  model-agnostic, or transport-agnostic survive replacement of the consumer, runtime, or lower
+  implementation, while keeping normative semantics separate from reference implementation;
+- **Reader Mental Model Integrity**: whether the explanation follows the engineering cause-and-effect
+  chain and establishes boundaries without either flattening technical depth or multiplying terms;
+- **Human Guide → Engineering Contract Handoff**: whether a gap is an architecture explanation
+  problem or an Engineering Contract formalization problem, and whether the handoff is explicit.
+
+For a detailed method and generic examples, read
+`references/deep-architecture-audit.md`. When a document makes strong independence or reuse claims,
+the reviewer MUST actively perform Independence and Boundary checks. Do not turn this method into a
+requirement that every concept fill every audit dimension, every document use identical chapters, or
+the Human Guide define a complete schema, API contract, retry protocol, state machine, or conformance
+suite that belongs to `engineering-contract-spec`.
+
+### Deep Audit Finding Format
+
+Findings SHOULD be specific enough to be actionable. Use this structure when a concern is found:
+
+1. **Finding** — the precise problem;
+2. **Audit Principle** — the triggered deep-audit rule;
+3. **Evidence** — the relevant prose, diagram, table, example, or cross-section comparison;
+4. **Reasoning** — why the evidence violates or weakens the principle;
+5. **Risk** — architecture, interoperability, responsibility, or reader-understanding risk;
+6. **Recommendation** — the smallest direction that resolves the issue without inventing design;
+7. **Ownership** — Human Guide, Engineering Contract, Implementation, or no change needed.
+
+Do not use vague findings such as “unclear” without evidence and ownership. Do not encode a
+project-specific answer as a generic audit rule.
 
 # 4. Semantic propagation
 
