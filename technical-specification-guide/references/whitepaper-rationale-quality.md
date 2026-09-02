@@ -23,6 +23,25 @@ the problem appears, what non-adoption would cause, and how the choice removes o
 Do not accept “X is important, therefore the system adopts X” as a complete rationale without the
 missing causal evidence.
 
+## Rationale Target Selection
+
+Prioritize the full WP-01..12 audit for a design that satisfies any of these conditions:
+
+1. introduces a new core abstraction;
+2. changes a system or standard boundary;
+3. leads to a MUST, MUST NOT, or key SHOULD;
+4. involves Safety, Authority, Trust, Permission, or another strong responsibility or guarantee;
+5. assigns a responsibility to a particular layer;
+6. supports a strong claim of independence, reuse, vendor neutrality, model agnosticism, or
+   transport agnosticism;
+7. decides current-version or deferred scope;
+8. introduces a mechanism because an existing mechanism is said to be insufficient; or
+9. has system-wide impact on interoperability, compatibility, conformance, or implementation.
+
+Ordinary field descriptions, local examples, small implementation hints, and already-supported
+repetition do not need a mechanical full WP-01..12 pass. Select depth where it matters and remain
+concise where it does not. This is a selection heuristic, not a new taxonomy.
+
 ## WP review checks
 
 ### WP-01 Problem Justification
@@ -39,16 +58,23 @@ technical reader to understand the decision; do not mechanically fill every step
 
 ### WP-03 Importance / Necessity / Urgency
 
-For a major decision, distinguish:
+For a major decision, Importance and Necessity normally need explanation. Urgency needs explanation
+only when a real time factor exists, such as:
 
 - **Importance** — why the problem is worth solving;
 - **Necessity** — why omitting the decision breaks or materially weakens the target architecture;
-- **Urgency** — why this version, deployment stage, or technical context calls for solving it now;
+- **Urgency** — when applicable, why this version, deployment stage, or technical context calls for
+  solving it now;
 - **Non-adoption consequence** — what remains wrong if it is not solved;
 - **Layer ownership** — why this layer, rather than a neighboring layer, should address it.
 
-These are questions, not mandatory headings. Do not accept adjectives such as better, safer,
-smarter, or more extensible as their own evidence.
+Relevant time factors may include a version window, deployment stage, scale transition, safety or risk
+window, ecosystem transition, compatibility deadline, or a technical paradigm change that makes the
+old mechanism start to fail. Do not manufacture urgency. Without real evidence, do not add phrases
+such as “rapidly evolving,” “critical period,” “increasingly urgent,” or “now more than ever.”
+
+These are questions, not mandatory headings. Do not accept adjectives such as better, safer, smarter,
+or more extensible as their own evidence.
 
 ### WP-04 Information Density
 
@@ -60,8 +86,10 @@ implication. Delete or rewrite prose whose only contribution is rhetorical compl
 ### WP-05 Empty Claim Detection
 
 Challenge claims such as “significant value,” “solid foundation,” “more flexible,” “more reliable,”
-or “AI-native.” They may remain only when the document identifies what is being compared, what changes,
-which mechanism causes the change, which object is affected, and in what scenario. The audit targets
+or “AI-native.” An unsupported claim must have enough context-specific evidence to be understandable,
+traceable, and technically defensible. Comparison, change, mechanism, affected object, and scenario
+are common substantiation dimensions, not a five-field template that every sentence must display. If
+the surrounding context already makes some dimensions clear, do not repeat them. The audit targets
 unsupported usage, not particular words as an absolute blacklist.
 
 ### WP-06 Failure-driven Rationale
@@ -108,6 +136,14 @@ Reuse the Deep Architecture Audit for layer responsibility, guarantee boundaries
 The rationale must explain why the problem belongs to this layer without moving orchestration into an
 interface, vendor details into a core standard, or implementation profile behavior into architecture
 law. Do not duplicate the full layer audit here.
+
+### Finding format reuse
+
+Whitepaper & Rationale Quality findings SHOULD reuse the existing Deep Architecture Audit Finding
+Format: Finding, Audit Principle, Evidence, Reasoning, Risk, Recommendation, and Ownership. The Audit
+Principle may be a WP check such as WP-01 Problem Justification, WP-05 Empty Claim Detection, or
+WP-11 Reader-derived Conclusion. If one issue triggers both audits, list the applicable principles
+under one finding rather than emitting two findings with identical evidence and reasoning.
 
 ### WP-11 Reader-derived Conclusion
 

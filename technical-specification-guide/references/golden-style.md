@@ -1,4 +1,8 @@
-# Golden Style — PAIS First Detailed Edition
+# Worked Benchmark — PAIS First Detailed Edition Style
+
+This is a PAIS-specific worked and historical style benchmark, not a generic architecture rule.
+Use it to study detailed, readable technical exposition only; do not promote its project-specific
+decisions into requirements for other documents or Skills.
 
 ## Why this is the benchmark
 

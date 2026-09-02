@@ -10,7 +10,7 @@ description: >
   explicit change is requested. Do not silently simplify, invent architecture, or insert writing-process
   language into the publication.
 metadata:
-  version: "0.5.0"
+  version: "0.5.1"
   role: "human-readable-detailed-technical-guide"
 ---
 
@@ -164,6 +164,9 @@ If the answer is unclear, keep the material.
 A final publication does not need to contain the ledger; the editing/review process does.
 
 Read `references/golden-master-preservation.md`.
+
+`references/golden-style.md` is a PAIS-specific worked style benchmark. It is example material for
+studying detailed exposition, not a generic architecture rule or a required table of contents.
 
 ---
 
@@ -692,6 +695,10 @@ not leak into current-version mandatory conformance.
 
 The Human Guide need not contain a complete contract matrix, but it must check that this chain closes.
 Detailed implementation-level traceability belongs to `engineering-contract-spec`.
+
+If Whitepaper & Rationale Quality is active, the final review MUST include the applicable WP-01..12
+checks. Not every WP check must produce a finding; the requirement is to inspect the applicable checks
+and record any resulting evidence.
 
 Before finishing, verify:
 

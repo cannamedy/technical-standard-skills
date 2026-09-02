@@ -15,6 +15,7 @@ required = [
     "references/deep-architecture-audit.md",
     "references/whitepaper-rationale-quality.md",
     "references/review-checklist.md",
+    "references/golden-style.md",
     "references/review-method.md",
     "references/publication-qa.md",
     "references/reasoning-questions.md",
@@ -23,6 +24,7 @@ required = [
 ]
 
 errors = []
+text = ""
 if not skill.exists():
     errors.append("Missing SKILL.md")
 else:
@@ -34,7 +36,7 @@ else:
         front = m.group(1)
         if not re.search(r"^name:\s*technical-specification-guide\s*$", front, re.M):
             errors.append("Wrong skill name")
-        if not re.search(r'^  version:\s*["\']0\.5\.0["\']\s*$', front, re.M):
+        if not re.search(r'^  version:\s*["\']0\.5\.1["\']\s*$', front, re.M):
             errors.append("Wrong version")
         if "description:" not in front:
             errors.append("Missing description")
@@ -44,6 +46,10 @@ for rel in required:
         errors.append(f"Missing {rel}")
 
 text = skill.read_text(encoding="utf-8") if skill.exists() else ""
+for link in re.findall(r"\]\(([^)#]+)(?:#[^)]+)?\)", text):
+    if not link.startswith(("http://", "https://", "#")) and not (root / link).exists():
+        errors.append(f"Broken relative reference: {link}")
+
 normalized_text = re.sub(r"\s+", " ", text).lower()
 for phrase in [
     "Reader value rule",
@@ -90,16 +96,41 @@ for phrase in [
     "reasoning obligations, not identical section structures",
     "WP-01..12",
     "not a fixed article template",
+    "applicable WP-01..12 checks",
 ]:
     if phrase.lower() not in normalized_text:
         errors.append(f"Missing core rule: {phrase}")
 
-deep_audit = root / "references/deep-architecture-audit.md"
-if deep_audit.exists():
-    deep_text = deep_audit.read_text(encoding="utf-8")
-    for token in ("PAIS", "NodeIdentity", "ESTUN"):
-        if token.lower() in deep_text.lower():
-            errors.append(f"Deep audit reference contains project-specific token: {token}")
+generic_audit_references = [
+    root / "references/deep-architecture-audit.md",
+    root / "references/whitepaper-rationale-quality.md",
+]
+for reference in generic_audit_references:
+    if reference.exists():
+        reference_text = reference.read_text(encoding="utf-8")
+        for token in ("PAIS", "Labor-FSD", "ESTUN", "RealSense", "Balance", "NodeIdentity"):
+            if token.lower() in reference_text.lower():
+                errors.append(f"Generic audit reference contains project-specific token: {token}")
+
+whitepaper = root / "references/whitepaper-rationale-quality.md"
+if whitepaper.exists():
+    whitepaper_text = whitepaper.read_text(encoding="utf-8")
+    normalized_whitepaper = re.sub(r"\s+", " ", whitepaper_text).lower()
+    for number in range(1, 13):
+        marker = f"WP-{number:02d}"
+        if marker.lower() not in normalized_whitepaper:
+            errors.append(f"Whitepaper reference missing {marker}")
+    for phrase in (
+        "not a fixed article template",
+        "reasoning obligations",
+        "human guide → engineering contract handoff",
+        "do not force every section",
+    ):
+        if phrase not in normalized_whitepaper:
+            errors.append(f"Whitepaper reference missing boundary: {phrase}")
+    for number in re.findall(r"\bWP-(\d{2})\b", whitepaper_text):
+        if int(number) > 12:
+            errors.append(f"Whitepaper reference contains unsupported WP-{number}")
 
 checklist = root / "references/review-checklist.md"
 if checklist.exists() and "WP-01..12" not in checklist.read_text(encoding="utf-8"):

@@ -1,11 +1,12 @@
 {
-  "README.md": "27132a538e98c193d415504e899b9d2044e4cab7bd2908d4e7e0883430213e2b",
-  "SKILL.md": "ced26a968efd3275eb512168298496959b23f7c3431fbc6059ccb13a97b44727",
-  "examples/activation-examples.md": "3950e1f1e5b4c2b02a594ee30cbda396a0cad2bb05ff62e5624d1bd85c640475",
+  "README.md": "b7711a165eb56d73ff9789e7faa0b2aaea8d15e29b3cb8b8c372afd5ef193d93",
+  "SKILL.md": "f563d5aa701ce0c6d8833d3b11778737df709819f7fdd691d3af3d37a338e147",
+  "examples/activation-examples.md": "dd68ea000a3d4027cb823ed98aa7f1b2a8e492f8cfea0449ecde46942fded316",
   "references/concept-budget.md": "8a50b0712742983b8a468baa038555c69d4804e8fdb2ba9d88e39b5d7dc609f4",
   "references/deep-architecture-audit.md": "441d7d339dbc8eccac860d50247e4aa5964edbc6223638c7f6b983874469f0b6",
   "references/failure-modes-v0.1.md": "be12d58ba8c372cd08f959419dec2f3d7d436b1a360fb887821b655f726b8a83",
   "references/golden-master-preservation.md": "49ed14b535d581b11db2d6826107f9d6603bfdbdf2d5448582328030a4b6d4ad",
+  "references/golden-style.md": "1e687cf5d31f480714a7aa4da255c222e3117f8b09ab63354a7691b2faaf841e",
   "references/narrative-continuity.md": "46222dbed9e85ddfee6d52104e3e723ee4ad85c57d5987f599f8b196669d5803",
   "references/no-silent-invention.md": "127b8c16e0938edd6e02f67d9c7183df7a03a5f5add25ac120e05dcab4213bb5",
   "references/publication-cleanliness.md": "b154e47bd927de4ecb4856c4e617bb09fc6a4fc153c1e6657ec313a47d84285e",
@@ -14,6 +15,6 @@
   "references/review-checklist.md": "b6b7c90678fd5315501838ca1f60790ba7f9b90724dd5da14922b4da0a431e07",
   "references/review-method.md": "6a343a6922bfc9b16e036f6f3759fafbd0e81bd6b46708554cd31bb3e0c8c9b6",
   "references/semantic-propagation.md": "bf40847cd3b3afc8f55acc81750e71e02e3f0df3961034f7f5d7b5366a96e3be",
-  "references/whitepaper-rationale-quality.md": "ffddbb96146a3afc8472c889ced87cfdf6e983047a46f0feb6ed90eb9fbe8487",
-  "scripts/validate_skill.py": "fe8369e80b7f4deae68c980128c4dd7de38f00d9f8c822c9da67a18b9cb1ab7e"
+  "references/whitepaper-rationale-quality.md": "ed97cfeddac7e9a0c9b0ca2f94586ebf17438512e2a2da987597e529324f172f",
+  "scripts/validate_skill.py": "7ba5a842b8d7610fbc58c8806237f68ac1fadfc99e0db863e3c1df061ab5b087"
 }

@@ -1,4 +1,4 @@
-# technical-specification-guide v0.5.0
+# technical-specification-guide v0.5.1
 
 Purpose:
 
