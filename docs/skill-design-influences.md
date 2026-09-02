@@ -12,6 +12,9 @@ vendored here.
 | [obra/superpowers](https://github.com/obra/superpowers) | Fresh task context; spec compliance review; code quality review; worktree isolation; execution ledger; final branch review | Compliance review before code-quality review; bounded task context; persistent tracker; worktree discipline; final whole-change verification | Subagents are optional; without them, roles are logically separated in one Agent | Any required subagent feature or platform-specific worktree API | Core behavior must remain available on simple Agent runtimes. |
 | [realworldtech/claude-implement-skill](https://github.com/realworldtech/claude-implement-skill) | Source section anchors; persistent requirement tracker; reread source before each task; resume after compaction; requirement-level verification | Requirement IDs / section anchors; reread authoritative Contract; persistent traceability; final gap verification | No platform-specific commands or permissions are required | Platform-specific commands and permission configuration | Preserve the mechanism while removing vendor coupling. |
 | [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | Gated spec-driven workflow; planning/task breakdown; incremental implementation; context engineering; TDD composition | Bounded context; dependency-aware planning; incremental implementation; TDD when behavior is testable | No universal fixed file-count rule; command syntax is intentionally omitted | Arbitrary fixed file-count law and platform-specific commands | Match task size to bounded context without inventing repository policy. |
+| [SkillMedev/skills — quiz-generator](https://github.com/SkillMedev/skills/tree/main/skills/quiz-generator) | Misconception-based distractors; cognitive targets; option parallelism | Source-grounded assessment planning and diagnostic distractors | Independent wording and validator implementation | Copied Skill text or code | Public methodology influence; MIT provenance recorded in the new Skill reference. |
+| [GarethManning/education-agent-skills](https://github.com/GarethManning/education-agent-skills) | Diagnostic distractors and one conceptual target | Distractor diagnosis and discrimination | Independent wording; no direct fork | Copied prose or ShareAlike obligations | CC BY-SA 4.0 methodology influence; boundary recorded in the new Skill reference. |
+| [hammadshakeelai/mcq-maker](https://github.com/hammadshakeelai/mcq-maker) | Answer balancing, streaks, length leakage, and mechanical checks | Independent quality validator concerns | No code or Skill text reused | Assuming an unverified license permits reuse | Publicly observed engineering concerns only. |
 
 No substantial third-party Skill source text or code is copied into this repository. No third-party
 attribution or license notice is required beyond the source links used as design references.
@@ -42,6 +45,9 @@ Whitepaper rationale quality was distilled as a separate argument-quality layer:
 reasoning, causal closure, calibrated importance/necessity/urgency, information density, empty-claim
 detection, failure-driven rationale, normative/informative separation, and reader-derived conclusions.
 It deliberately reuses architecture-boundary audits rather than duplicating them.
+
+Assessment question design was distilled as a source-grounded, misconception-based, anti-gaming
+workflow with deterministic validation separated from model judgment.
 
 These controls came from real Contract → Planning → Compatibility Audit workflow practice. They are
 generic planner workflow learnings, not requirements or details of any one product repository.

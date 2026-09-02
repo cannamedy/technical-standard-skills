@@ -1,0 +1,10 @@
+interface:
+  display_name: assessment question designer
+  short_description: 'Design and audit technical assessment questions'
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

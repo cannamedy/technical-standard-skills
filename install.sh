@@ -10,6 +10,7 @@ skills=(
   contract-implementation-planner
   contract-driven-coding
   technical-document-publisher
+  assessment-question-designer
 )
 
 mkdir -p -- "$agents_skills_dir"
