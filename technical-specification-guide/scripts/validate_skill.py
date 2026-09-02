@@ -13,6 +13,8 @@ required = [
     "references/no-silent-invention.md",
     "references/semantic-propagation.md",
     "references/deep-architecture-audit.md",
+    "references/whitepaper-rationale-quality.md",
+    "references/review-checklist.md",
     "references/review-method.md",
     "references/publication-qa.md",
     "references/reasoning-questions.md",
@@ -32,7 +34,7 @@ else:
         front = m.group(1)
         if not re.search(r"^name:\s*technical-specification-guide\s*$", front, re.M):
             errors.append("Wrong skill name")
-        if not re.search(r'^  version:\s*["\']0\.4\.0["\']\s*$', front, re.M):
+        if not re.search(r'^  version:\s*["\']0\.5\.0["\']\s*$', front, re.M):
             errors.append("Wrong version")
         if "description:" not in front:
             errors.append("Missing description")
@@ -72,6 +74,22 @@ for phrase in [
     "not a fixed publication template",
     "MUST actively perform Independence and Boundary checks",
     "complete schema",
+    "Whitepaper & Rationale Quality",
+    "Problem-first Reasoning",
+    "Causal Closure",
+    "Importance / Necessity / Urgency",
+    "Information Density",
+    "Empty Claim Detection",
+    "Failure-driven Rationale",
+    "Normative / Informative Separation",
+    "Normative Strength Justification",
+    "Alternative Sufficiency",
+    "Responsibility Test",
+    "Reader-derived Conclusion",
+    "Whitepaper ≠ Specification Dump",
+    "reasoning obligations, not identical section structures",
+    "WP-01..12",
+    "not a fixed article template",
 ]:
     if phrase.lower() not in normalized_text:
         errors.append(f"Missing core rule: {phrase}")
@@ -82,6 +100,10 @@ if deep_audit.exists():
     for token in ("PAIS", "NodeIdentity", "ESTUN"):
         if token.lower() in deep_text.lower():
             errors.append(f"Deep audit reference contains project-specific token: {token}")
+
+checklist = root / "references/review-checklist.md"
+if checklist.exists() and "WP-01..12" not in checklist.read_text(encoding="utf-8"):
+    errors.append("Review checklist does not link the WP-01..12 gate")
 
 if errors:
     print("INVALID")

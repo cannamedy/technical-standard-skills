@@ -10,7 +10,7 @@ description: >
   explicit change is requested. Do not silently simplify, invent architecture, or insert writing-process
   language into the publication.
 metadata:
-  version: "0.4.0"
+  version: "0.5.0"
   role: "human-readable-detailed-technical-guide"
 ---
 
@@ -262,6 +262,41 @@ Findings SHOULD be specific enough to be actionable. Use this structure when a c
 
 Do not use vague findings such as “unclear” without evidence and ownership. Do not encode a
 project-specific answer as a generic audit rule.
+
+## 3.3 Whitepaper & Rationale Quality Method
+
+For an architecture whitepaper, technical architecture guide, interface or protocol rationale,
+standard design guide, or other human-facing technical document that also contains normative
+requirements, activate **Whitepaper & Rationale Quality**. This is an argument-quality audit, not a
+fixed article template. It requires reasoning obligations, not identical section structures.
+
+The method checks whether important design conclusions are earned by the document's evidence:
+
+- **Problem-first Reasoning** and **Causal Closure**: establish existing reality, remaining problem,
+  consequence, root cause, responsible layer, design choice, and normative consequence as far as the
+  scope requires;
+- **Importance / Necessity / Urgency**: test why a problem matters, why non-adoption harms the target
+  architecture, why the current stage calls for action, and why the current layer owns it;
+- **Information Density** and **Empty Claim Detection**: apply the Delete Test and require claims
+  such as “more flexible” or “more reliable” to name a comparison, mechanism, object, and scenario;
+- **Failure-driven Rationale** and **Alternative Sufficiency**: use plausible failure or
+  counterexample chains and explain why an existing mechanism is insufficient when a new abstraction
+  depends on that premise;
+- **Normative / Informative Separation** and **Normative Strength Justification**: keep rationale
+  distinct from requirements and justify new MUST / SHOULD / MAY strength without changing frozen
+  source-of-truth wording;
+- **Responsibility Test**: reuse Deep Architecture Audit's layer and guarantee-boundary checks to
+  explain why the issue belongs to this layer;
+- **Reader-derived Conclusion**: test whether the preceding facts, constraints, and failure modes
+  let a technical reader substantially derive the conclusion rather than merely receive an assertion;
+- **Whitepaper ≠ Specification Dump**: preserve technical depth while explaining relationships,
+  causes, boundaries, and consequences instead of presenting only object, schema, API, or MUST lists.
+
+Read `references/whitepaper-rationale-quality.md` for the WP-01..12 checks. Reuse
+`references/deep-architecture-audit.md` for layer responsibility, responsibility / guarantee
+boundaries, and architecture independence; do not duplicate those audits here. The method does not
+require every section to expose Importance, Necessity, Urgency, Failure, Alternative, or Normative
+labels, and it does not force the Human Guide to become a complete Engineering Contract.
 
 # 4. Semantic propagation
 

@@ -34,3 +34,10 @@
 - Diagrams explain.
 - Tables compare.
 - Questions teach.
+
+## Whitepaper rationale gate
+
+For documents in the Whitepaper & Rationale Quality scope, apply WP-01..12 from
+`references/whitepaper-rationale-quality.md`. Confirm that important conclusions are supported by
+problem evidence and causal reasoning, that empty claims are substantiated, and that normative
+strength is justified. This is a review gate, not a required set of article headings.

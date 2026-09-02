@@ -1,4 +1,4 @@
-# technical-specification-guide v0.4.0
+# technical-specification-guide v0.5.0
 
 Purpose:
 
@@ -23,6 +23,13 @@ Key v0.4 changes:
 - Cross-Section Concept Consistency and Architecture Independence checks;
 - Reader Mental Model Integrity and Human Guide → Engineering Contract handoff;
 - Structured, ownership-aware audit findings.
+
+Key v0.5 changes:
+- Whitepaper & Rationale Quality methodology;
+- WP-01..12 checks for problem proof, causal closure, information density, empty claims, failure-driven
+  rationale, normative separation, alternative sufficiency, reader-derived conclusions, and
+  specification-dump detection;
+- Explicit reuse of Deep Architecture Audit for responsibility ownership and architecture boundaries.
 
 The v0.2 philosophy is deliberately more restrained than v0.1:
 do less rewriting, preserve more information, and require the final document to be demonstrably better than the preferred source.

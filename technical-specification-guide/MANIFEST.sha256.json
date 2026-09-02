@@ -1,6 +1,6 @@
 {
-  "README.md": "1698ab333a22383a2da4fd4688eb3a0762936f5aa3cdf77b82516410fdf3cf83",
-  "SKILL.md": "c3bc5a2df89f02a7ac36bab3dfedf9d10fcd2366ee066a06045e0ca55f284529",
+  "README.md": "27132a538e98c193d415504e899b9d2044e4cab7bd2908d4e7e0883430213e2b",
+  "SKILL.md": "ced26a968efd3275eb512168298496959b23f7c3431fbc6059ccb13a97b44727",
   "examples/activation-examples.md": "3950e1f1e5b4c2b02a594ee30cbda396a0cad2bb05ff62e5624d1bd85c640475",
   "references/concept-budget.md": "8a50b0712742983b8a468baa038555c69d4804e8fdb2ba9d88e39b5d7dc609f4",
   "references/deep-architecture-audit.md": "441d7d339dbc8eccac860d50247e4aa5964edbc6223638c7f6b983874469f0b6",
@@ -11,7 +11,9 @@
   "references/publication-cleanliness.md": "b154e47bd927de4ecb4856c4e617bb09fc6a4fc153c1e6657ec313a47d84285e",
   "references/publication-qa.md": "d0f24964588915834446aa36a825f7ec5f2069f81f7c0df46fc05581bc52c2cc",
   "references/reasoning-questions.md": "707315a442a8ce3cb6ebe6795980f1f9e78ecbf1de61ddedaef28d848593ac8e",
+  "references/review-checklist.md": "b6b7c90678fd5315501838ca1f60790ba7f9b90724dd5da14922b4da0a431e07",
   "references/review-method.md": "6a343a6922bfc9b16e036f6f3759fafbd0e81bd6b46708554cd31bb3e0c8c9b6",
   "references/semantic-propagation.md": "bf40847cd3b3afc8f55acc81750e71e02e3f0df3961034f7f5d7b5366a96e3be",
-  "scripts/validate_skill.py": "7257bb43acbf58b08ac95f1418a2e286013446db8a368755cadad74bfa79e706"
+  "references/whitepaper-rationale-quality.md": "ffddbb96146a3afc8472c889ced87cfdf6e983047a46f0feb6ed90eb9fbe8487",
+  "scripts/validate_skill.py": "fe8369e80b7f4deae68c980128c4dd7de38f00d9f8c822c9da67a18b9cb1ab7e"
 }

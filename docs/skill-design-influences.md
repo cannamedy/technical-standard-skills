@@ -38,5 +38,10 @@ architecture independence, reader mental models, and Human Guide → Engineering
 Structured findings preserve evidence, reasoning, risk, recommendation, and ownership without
 turning product-specific conclusions into generic rules.
 
+Whitepaper rationale quality was distilled as a separate argument-quality layer: problem-first
+reasoning, causal closure, calibrated importance/necessity/urgency, information density, empty-claim
+detection, failure-driven rationale, normative/informative separation, and reader-derived conclusions.
+It deliberately reuses architecture-boundary audits rather than duplicating them.
+
 These controls came from real Contract → Planning → Compatibility Audit workflow practice. They are
 generic planner workflow learnings, not requirements or details of any one product repository.
