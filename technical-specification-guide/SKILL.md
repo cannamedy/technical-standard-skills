@@ -10,8 +10,8 @@ description: >
   explicit change is requested. Do not silently simplify, invent architecture, or insert writing-process
   language into the publication.
 metadata:
-  version: "0.5.1"
-  role: "human-readable-detailed-technical-guide"
+  version: "0.6.0"
+  role: "human-readable-detailed-technical-guide-with-source-readiness-audit"
 ---
 
 # Technical Specification Guide
@@ -300,6 +300,37 @@ Read `references/whitepaper-rationale-quality.md` for the WP-01..12 checks. Reus
 boundaries, and architecture independence; do not duplicate those audits here. The method does not
 require every section to expose Importance, Necessity, Urgency, Failure, Alternative, or Normative
 labels, and it does not force the Human Guide to become a complete Engineering Contract.
+
+## 3.4 Source Readiness Audit
+
+Before a document enters a final publication workflow, run the **Source Readiness Audit** against
+the actual Markdown source. The audit is a pre-publication review, not a replacement for reading the
+technical content.
+
+Use `scripts/audit_document_structure.py` for deterministic findings, then apply the reasoning
+checks in `references/document-structure-ontology.md`. The audit MUST cover, as applicable:
+
+- heading ontology and hierarchy, including unexplained H2→H4 or deeper jumps;
+- visible legacy numbering after information-architecture reorganization;
+- legacy visible numbering MUST be resolved or explicitly reviewed;
+- pseudo-headings that are local labels, lead-ins, callouts, or question metadata;
+- outline explosion and runtime microstep inflation;
+- lists, fenced code, ASCII diagrams, tables, and normative keyword counts;
+- assessment-section discovery and handoff to `assessment-question-designer`;
+- source hash and before/after normative keyword delta when a repair is proposed.
+
+The deterministic result uses these statuses:
+
+- `SOURCE_READY`: no blocking source-structure finding remains;
+- `SOURCE_REPAIR_REQUIRED`: a deterministic or explicitly review-required finding must be repaired
+  by the responsible authoring Skill before freeze;
+- `SOURCE_BLOCKED`: the source cannot be safely repaired without a human architecture decision or
+  missing information.
+
+The script reports heuristics as findings requiring reasoning review. It MUST NOT claim that a
+regular expression has established architectural meaning. A source repair MUST preserve technical
+meaning, architecture decisions, normative strength, and source-grounded assessment evidence.
+After any repair, rerun the complete audit and record a normative keyword delta.
 
 # 4. Semantic propagation
 

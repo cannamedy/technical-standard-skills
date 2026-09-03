@@ -1,6 +1,6 @@
 {
-  "README.md": "9bd980fe69bc5b63167eb8c3d034b33d84f056565d9a6d43b3f4eb4c89dc8a28",
-  "SKILL.md": "aa0dd4bdd39b14885f9705d4837f9d2488d93ec0674a39139112259924bfe350",
+  "README.md": "9f6843af38d560a38ac7ee3866df7b6fa038278775ab4fb55c9327a6080d048f",
+  "SKILL.md": "e43cff35e4c2378cfea4552bd5659d141c6a2910e83477527510b596624da99c",
   "agents/openai.yaml": "a58a55ae47db808894b036f63a12b708bbe9b5c9df0664d27e7f5cef274b70c9",
   "references/anti-gaming-rules.md": "0ef3bb16f38f4d5ded50ad34e3db26da806de2b246dde241353bd437aa74def5",
   "references/assessment-design-principles.md": "9b019808a2941f21c80f783ab3dce258fca325cbc1c4d770c373a83a19a096c9",
@@ -8,7 +8,7 @@
   "references/distractor-design.md": "02366193b405032ee7155e773e6918c69ae53dcddef42aa27db25d9863e1f198",
   "references/external-influences.md": "7427f8c0eb046da8c18483fb5c8360d28c7553129f4ef924e15be38a4731ccda",
   "references/generic-examples.md": "e5bd74acd0740166f7ca46ef6431e99a85582719ccb3e97d2bc18feea6036291",
-  "scripts/validate_assessment_questions.py": "1007ccd7bec1eb0ca65cf04bae2c4affc0d3dc718c8e7d9bf8871482e01574c7",
+  "scripts/validate_assessment_questions.py": "b79c94aa188b1899483128d5ad89e573aa65f5817169f3b8c0101eb555189ee4",
   "tests/fixtures/valid_20.json": "e2fbd23757cbe56090a87a5fcdee06ac528a40821a6e8e7bf9ebab4872830ddf",
-  "tests/test_validator.py": "08f443c338da573619049b003d84fe15cf4a49a40c69528519d6b8b16067467b"
+  "tests/test_validator.py": "4cffa1bf342c48ab019747768b0b30f0fb4bf8ff83f867931b7639ccd7e2107d"
 }

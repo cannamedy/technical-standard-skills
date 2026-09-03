@@ -14,6 +14,7 @@ required = [
     "references/semantic-propagation.md",
     "references/deep-architecture-audit.md",
     "references/whitepaper-rationale-quality.md",
+    "references/document-structure-ontology.md",
     "references/review-checklist.md",
     "references/golden-style.md",
     "references/review-method.md",
@@ -21,6 +22,7 @@ required = [
     "references/reasoning-questions.md",
     "references/failure-modes-v0.1.md",
     "examples/activation-examples.md",
+    "scripts/audit_document_structure.py",
 ]
 
 errors = []
@@ -36,7 +38,7 @@ else:
         front = m.group(1)
         if not re.search(r"^name:\s*technical-specification-guide\s*$", front, re.M):
             errors.append("Wrong skill name")
-        if not re.search(r'^  version:\s*["\']0\.5\.1["\']\s*$', front, re.M):
+        if not re.search(r'^  version:\s*["\']0\.6\.0["\']\s*$', front, re.M):
             errors.append("Wrong version")
         if "description:" not in front:
             errors.append("Missing description")
@@ -97,6 +99,12 @@ for phrase in [
     "WP-01..12",
     "not a fixed article template",
     "applicable WP-01..12 checks",
+    "Source Readiness Audit",
+    "document-structure-ontology.md",
+    "SOURCE_READY",
+    "SOURCE_REPAIR_REQUIRED",
+    "runtime microstep",
+    "legacy visible numbering",
 ]:
     if phrase.lower() not in normalized_text:
         errors.append(f"Missing core rule: {phrase}")

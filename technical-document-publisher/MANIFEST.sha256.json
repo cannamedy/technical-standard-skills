@@ -1,15 +1,19 @@
 {
-  "README.md": "4f907ab7041fd2f4fefce82815b2804947095f3bda3ef3366e6bd90e2339b8b6",
-  "SKILL.md": "aa63eb7908a020f23844690b180c841350a63d0e7b3c28ec30172832584cc58c",
-  "examples/activation-examples.md": "58d15026ddb3482473387257d2d14f281d606d4db0f27120f4570d32479eb95b",
+  "README.md": "0c92300c3b7c7d4257ab3336a6b0b5c0312448c8c99f6de10fa7c85131e757ec",
+  "SKILL.md": "94bbf213c467bf5f23d887f40a4de7c671054278a1812d8beb513514e2f15e5b",
+  "agents/openai.yaml": "8e547d7a9470b13eac1226e7acd7899111d4b4aa5218a29f21384edb5fa14f3e",
+  "examples/activation-examples.md": "86cf1fd00c5b554f6727576bb88336d505465cc5f143bebda796999aca4dd1ca",
   "references/content-fidelity.md": "b12dd30ec41b67869769ea28add1a0560d006446749188c54c571bfa274651fc",
   "references/pais-profile-notes.md": "4e2f37e5e62519d50a1f75fc0aa03dc8750c47b998b940b065e811ec6de3cbd6",
-  "references/publication-profile.md": "b8f79d679ab363b375ef13fc37f5997e37ffd753e18319a419684cce6380bae4",
+  "references/publication-profile.md": "524af2babe79d89046d4f85448613f7ac294af4edd77a333e9b177106ee49260",
   "references/publication-workflow.md": "1c7de50529f4aa3c3938df3ad6e25000a46655b9c55819e7627dae52cb498dd0",
+  "references/release-manifest.md": "0893c11cc490d8d30bb9288a533012204127458965eca569bd3ee12bb33b6f3a",
   "references/source-of-truth.md": "aea75eb9ae4083cacf5da6ab01ec6d850cdb5201347fba9deac4dd11405da985",
-  "references/structural-fidelity.md": "79a1bc777b415a801cfa794de499d65ae128d74af02b13a5ae96fe7b2744b563",
-  "references/visual-qa.md": "3d49492b3bb3b19982051cbe89b53381ea28f87dda1a481dd5296287d3e12b28",
-  "scripts/validate_publication_structure.py": "95cec8d7840670095252117293b975d8049f3762efa1bc48f122d10c2c24ec20",
-  "scripts/validate_skill.py": "a4e2d2f95f99d1aba3685218f4d787cad411dad6ec9237c8e2339bd862aae014",
-  "tests/test_validator.py": "3658028182b4cd5330251d6523bd3666a74f4dbe9cfe233d91700dc4e3a92f17"
+  "references/structural-fidelity.md": "e26eb5ab0d71b05ec2dfa2cc23e1cab3cc746c91a087f8b5c16593eb7bc82657",
+  "references/visual-qa.md": "3767c5156c04865d6d8e667aeecd18a0176b31b81fe85fa9c2d943da763cf6de",
+  "scripts/validate_publication_structure.py": "918be42c9218fd6e74190e1773bc78007f07f80c81b510f54ff1a5b49ed56731",
+  "scripts/validate_release_manifest.py": "2dbb21083316d7fe3206f8d39164a96c1307feae90827a963785a6befe0c62b0",
+  "scripts/validate_skill.py": "db522c6c40089cd4ddabbdd5ebb5bd0bb4fe263b6fad50456367edad59160295",
+  "tests/test_release_manifest.py": "9d1475749bb9466c24096c94f04662b600f0beca581bb500ff8a60c10328c619",
+  "tests/test_validator.py": "9296a8a2ba3134a7ffed1a9b906d121980b2e1f9d2015eb819d4ad4cfa4ad364"
 }

@@ -62,7 +62,7 @@ Root
 """
 
 
-def _add_num_instance(document: Document, num_id: int, kind: str = "ordered") -> None:
+def _add_num_instance(document: Document, num_id: int, kind: str = "ordered", *, explicit: bool = True) -> None:
     numbering = document.part.numbering_part.element
     fmt = "decimal" if kind == "ordered" else "bullet"
     abstract = None
@@ -79,6 +79,13 @@ def _add_num_instance(document: Document, num_id: int, kind: str = "ordered") ->
     abstract_id = OxmlElement("w:abstractNumId")
     abstract_id.set(qn("w:val"), abstract)
     num.append(abstract_id)
+    if kind == "ordered" and explicit:
+        override = OxmlElement("w:lvlOverride")
+        override.set(qn("w:ilvl"), "0")
+        start = OxmlElement("w:startOverride")
+        start.set(qn("w:val"), "1")
+        override.append(start)
+        num.append(override)
     numbering.append(num)
 
 
@@ -108,11 +115,11 @@ def _make_doc(path: Path, *, broken: str | None = None) -> None:
     toc._p.append(field)
     for heading in source.headings:
         if heading.level <= 3:
-            document.add_paragraph(heading.text)
+            document.add_paragraph(f"{heading.text} .... {heading.level + 1}")
     document.add_page_break()
 
     document.add_paragraph("The node MUST expose a stable identity. Consumers SHOULD inspect freshness and MAY cache descriptions.")
-    _add_num_instance(document, 101)
+    _add_num_instance(document, 101, explicit=broken != "missing-start-override")
     _add_num_instance(document, 102)
     _add_num_instance(document, 103, "bullet")
     lists = [
@@ -144,8 +151,12 @@ def _make_doc(path: Path, *, broken: str | None = None) -> None:
         document.add_paragraph("##### Identity")
     elif broken == "empty-toc":
         for paragraph in document.paragraphs:
-            if paragraph.text in [heading.text for heading in source.headings if heading.level <= 3]:
+            if ".... " in paragraph.text:
                 paragraph.text = ""
+    elif broken == "toc-no-page-numbers":
+        for paragraph in document.paragraphs:
+            if ".... " in paragraph.text:
+                paragraph.text = paragraph.text.split(".... ", 1)[0]
     elif broken == "heading-order":
         document.paragraphs[3].style = "Heading 5"
     elif broken == "missing-table-row":
@@ -208,6 +219,17 @@ class StructuralValidatorTests(unittest.TestCase):
 
     def test_useful_toc_passes(self):
         self.assertEqual(self.result()["docx"]["toc_entries"], 3)
+
+    def test_toc_requires_page_numbers_and_leader_dots(self):
+        self.assert_invalid("toc-no-page-numbers", "TOC_PAGE_NUMBERS_MISSING")
+        self.assert_invalid("toc-no-page-numbers", "TOC_LEADER_DOTS_MISSING")
+
+    def test_ordered_lists_have_explicit_start_overrides(self):
+        result = self.result()
+        self.assertNotIn("LIST_START_OVERRIDE_MISSING", {f["code"] for f in result["findings"]})
+
+    def test_missing_ordered_list_start_override_invalid(self):
+        self.assert_invalid("missing-start-override", "LIST_START_OVERRIDE_MISSING")
 
     def test_heading_order_mismatch_invalid(self):
         self.assert_invalid("heading-order", "HEADING_LEVEL_MISMATCH")

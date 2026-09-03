@@ -1,4 +1,4 @@
-# assessment-question-designer v0.1.0
+# assessment-question-designer v0.2.0
 
 Design and audit source-grounded technical assessment questions, especially four-option MCQs.
 
@@ -11,6 +11,7 @@ The Skill combines:
 - option-length, grammar, ambiguity, and anti-gaming audits;
 - whole-batch and tail-quality checks;
 - a deterministic JSON validator with hard errors and warnings.
+- a deterministic release audit that promotes known batch-quality hazards to blocking findings.
 
 Examples:
 
@@ -20,3 +21,14 @@ Examples:
 
 The Skill is independent of any particular technical domain. Use a source-aware model review for
 meaning, and `scripts/validate_assessment_questions.py` for mechanical invariants.
+
+For a final technical-document release, run:
+
+```text
+python assessment-question-designer/scripts/validate_assessment_questions.py \
+  questions.json --source-grounded --release
+```
+
+`--release` enforces balanced answer positions, streak/pattern limits, source evidence, distractor
+diagnostic metadata, ambiguity, option-length leakage, and tail-quality gates. It does not replace
+the source-aware review of one-best-answer quality or distractor plausibility.

@@ -72,6 +72,13 @@ toc:
   title: "Contents"
   update_fields: true
   verify_entries: true
+  require_page_numbers: true
+  leader: "dots"
+
+labels:
+  lead_in: "Lead-in"
+  runtime_label: "Runtime Label"
+  question_label: "Question Label"
 
 header:
   enabled: true
@@ -86,6 +93,10 @@ pagination:
   heading_keep_with_next: true
   avoid_isolated_heading: true
   avoid_single_line_page_tail: true
+  avoid_short_final_page: true
+  keep_question_block: true
+  keep_short_diagram: true
+  minimum_tail_fill_policy: "warn; style-only remediation"
 ```
 
 The minimum semantic requirements are independent of visual choices:
@@ -96,4 +107,8 @@ The minimum semantic requirements are independent of visual choices:
   nested levels remain explicit.
 - Code and layout-sensitive ASCII diagrams are classified separately.
 - A TOC field is accompanied by verifiable cached or rendered entries when
-  TOC is enabled.
+  TOC is enabled; each visible entry has a page number and the configured
+  leader pattern.
+- Word structure is style-first: heading, list, code, diagram, quote, table,
+  and TOC semantics are represented by named styles or numbering XML before
+  paragraph-level direct formatting is considered.

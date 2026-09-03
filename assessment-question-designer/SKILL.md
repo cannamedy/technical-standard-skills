@@ -7,8 +7,8 @@ description: >
   technical training questions. Do not use for surveys, personality tests, clinical assessments, or
   essay grading.
 metadata:
-  version: "0.1.0"
-  role: "source-grounded-assessment-question-designer"
+  version: "0.2.0"
+  role: "source-grounded-assessment-question-designer-with-release-audit"
 ---
 
 # Assessment Question Designer
@@ -57,6 +57,15 @@ Build a complete blueprint before writing the option text:
 10. run `scripts/validate_assessment_questions.py` and review its warnings;
 11. audit the complete batch, including the final 25% of items.
 
+For a publication workflow, use **RELEASE AUDIT MODE** (`--release`). It promotes answer-position
+bias, same-answer streaks over two, predictable answer patterns, missing source evidence, missing or
+marked-weak distractor diagnostics, ambiguity metadata, and tail quality degradation to blocking
+findings. It reports option-length and grammar leakage for required source-aware review; those
+heuristics must not be treated as proof of a bad item without examining the construct. This is a batch
+gate, not proof of conceptual correctness:
+one-best-answer quality, source entailment, misconception plausibility, and whether a distractor is
+actually silly still require source-aware review by this Skill.
+
 Read [references/assessment-design-principles.md](references/assessment-design-principles.md) for
 blueprints, source grounding, cognitive targets, and question diversity. Read
 [references/difficulty-model.md](references/difficulty-model.md) for the five-level model and
@@ -73,6 +82,11 @@ For a 20-question four-option set, target A/B/C/D = 5/5/5/5. When the count is n
 four, position counts SHOULD differ by no more than one. A same-answer streak MUST NOT exceed two
 unless the user explicitly requests an unbalanced or preserved sequence. Balanced does not mean a
 predictable ABCD cycle.
+
+For a 25-question MCQ4 release, the target is a distribution whose counts differ by no more than one
+(for example 7/6/6/6), with no same-answer streak over two and no predictable cycle. Do not obtain
+balance by blindly swapping letters; rebalance in the blueprint while preserving source grounding and
+option symmetry.
 
 Read [references/anti-gaming-rules.md](references/anti-gaming-rules.md) for option symmetry,
 position balance, leakage, ambiguity, and tail-quality checks. Read
@@ -104,5 +118,6 @@ Quality MUST NOT DEGRADE WITH ITEM INDEX. For large batches, blueprint first, wr
 batches, run a whole-set audit, and inspect the final 25% for difficulty and distractor quality.
 
 Read [references/assessment-design-principles.md](references/assessment-design-principles.md) for the
-data shape used by the independent validator. Use the validator as a quality signal, not as proof
-that a question is pedagogically or technically correct.
+data shape used by the independent validator. Use `--release` for the deterministic batch gate and
+the validator as a quality signal, not as proof that a question is pedagogically or technically
+correct.

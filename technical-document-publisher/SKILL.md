@@ -6,13 +6,14 @@ description: >
   repository layout, publication profile, artifact naming, content-fidelity gates, and release workflow.
   It does not implement low-level DOCX manipulation itself and must not rewrite technical content.
 metadata:
-  version: "0.4.0"
-  role: "publication-orchestrator-with-fidelity-gates"
+  version: "0.5.0"
+  role: "end-to-end-technical-document-release-orchestrator"
 ---
 
 # Technical Document Publisher
 
-This is a **thin publication-orchestration skill with explicit fidelity gates**.
+This is a **publication-orchestration skill with explicit source, content, structural, assessment,
+and visual release gates**.
 
 It does not replace the installed `doc` skill.
 
@@ -52,6 +53,8 @@ technical-document-publisher
 - list numbering and heading mapping policy;
 - TOC verification policy;
 - source-integrity checks;
+- final-release mode and source-readiness orchestration;
+- assessment-section discovery and quality-gate routing;
 - invocation expectations for the installed `doc` skill;
 - release-candidate criteria.
 
@@ -165,6 +168,42 @@ The publisher MUST NOT add, delete, or rewrite source-semantic content.
 Publication-only content MUST NOT change source semantics. The publisher MUST NOT add a new technical
 explanation, normative clause, architecture concept, example used to justify architecture, taxonomy,
 or content-bearing summary. Publication may add presentation structure, but MUST NOT add technical meaning.
+
+## 3.3 Final Release Mode
+
+Use **FINAL RELEASE MODE** when the request asks to generate the final Word/PDF, produce a formal
+technical document, publish a Markdown guide, or otherwise says `final publication`, `release-ready
+document`, `最终 DOCX`, `正式 Word`, `最终技术文档`, or `发布成 DOCX/PDF`. This mode is the default for
+those requests. Use **STRICT PUBLISH MODE** only when the user explicitly says to publish frozen
+Markdown without modifying the source.
+
+FINAL RELEASE MODE orchestrates the upstream Skills before it freezes the source:
+
+The **Source Readiness** gate is the first release gate and is reported as
+`SOURCE_READY`, `SOURCE_REPAIR_REQUIRED`, or `SOURCE_BLOCKED`.
+
+```text
+authoritative source → source hash → technical-specification-guide audit
+       → minimal source repair when required → re-audit
+       → assessment discovery → assessment-question-designer audit/repair
+       → normative delta audit → SOURCE_READY → freeze source
+       → doc build → CONTENT FIDELITY → STRUCTURAL FIDELITY
+       → TOC/heading/list/code/diagram gates → DOCX/PDF render
+       → page images → every-page VISUAL FIDELITY QA
+       → classify defect ownership → repair → rebuild from the relevant gate
+       → PUBLICATION CANDIDATE READY FOR HUMAN RELEASE REVIEW
+```
+
+Source repairs are allowed only in FINAL RELEASE MODE and only when they are within the responsible
+authoring Skill's scope. They MUST preserve architecture decisions, technical meaning, MUST/SHOULD/MAY
+strength, examples with technical meaning, and source-grounded question evidence. Record the original
+source hash, frozen hash, source delta, responsible Skill, and repair rationale. If repairing the
+source would require an architecture decision, missing information, or uncertain technical meaning,
+stop with `PUBLICATION BLOCKED` and `BLOCKED_NEEDS_HUMAN_DECISION`.
+
+The publisher owns the final release gate, not the upstream content judgments. It MUST automatically
+route a detected assessment section to `assessment-question-designer`; it MUST NOT claim that a
+deterministic scan has proven distractor plausibility or architecture correctness.
 
 ---
 
@@ -315,7 +354,7 @@ Publication should look like a technical document, not an editing log.
 
 # 9. Publication workflow
 
-Preferred workflow:
+Preferred STRICT PUBLISH MODE workflow:
 
 ```text
 Approved Markdown
@@ -343,7 +382,8 @@ Re-render
 Publication candidate
 ```
 
-Read `references/publication-workflow.md`.
+Read `references/publication-workflow.md` for both modes, the repair loop, and stop conditions.
+Read `references/release-manifest.md` for the required machine-readable publication manifest.
 
 ---
 
@@ -558,6 +598,29 @@ Before human release approval, use:
 `PUBLICATION CANDIDATE READY FOR HUMAN RELEASE REVIEW`
 
 Do not self-declare a major technical publication final solely because tooling passed.
+
+## 16.1 Final release statuses and manifest
+
+The final state is one of:
+
+- `PUBLICATION CANDIDATE READY FOR HUMAN RELEASE REVIEW`: all blocking gates pass and every page
+  has a page-level QA record;
+- `PUBLICATION BLOCKED`: a blocking gate failed;
+- `BLOCKED_NEEDS_HUMAN_DECISION`: a source repair would change architecture meaning, normative
+  strength, or an unresolved design choice.
+
+FINAL RELEASE MODE MUST iterate `build → validate → repair → rebuild` until one of these states is
+reached. It MUST NOT stop after reporting an ordinary repairable TOC, numbering, style, pagination,
+or visual defect. Source structure findings return to `technical-specification-guide`; question
+quality findings return to `assessment-question-designer`; DOCX structure and visual findings return
+to the publisher/doc layer.
+
+Every final-release attempt MUST write a build artifact named `publication-manifest.json` outside the
+technical body. At minimum it records source path, source hash before repair, frozen source hash,
+source modifications, source Git HEAD, Skills and versions used, profile/template/build hashes,
+DOCX/PDF hashes, page count, heading and list summaries, assessment result when applicable,
+normative keyword delta, Content/Structural/Visual Fidelity results, page-level QA path, and final
+status. Use `references/release-manifest.md` as the schema and policy.
 
 ---
 

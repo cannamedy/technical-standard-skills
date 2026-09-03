@@ -39,6 +39,18 @@ class AssessmentValidatorTests(unittest.TestCase):
         self.assertIn("ANSWER_POSITION_BIAS", codes(result))
         self.assertIn("ANSWER_STREAK", codes(result))
 
+    def test_release_mode_blocks_answer_bias_and_streak(self):
+        data = load_fixture()
+        for item in data["questions"]:
+            item["correct_option"] = "B"
+            for option in item["options"]:
+                option["is_correct"] = option["label"] == "B"
+                option.setdefault("misconception", "wrong position inference")
+        result = validate_document(data, release=True)
+        self.assertEqual(result["status"], "INVALID")
+        self.assertIn("ANSWER_POSITION_BIAS", codes(result))
+        self.assertIn("ANSWER_STREAK", codes(result))
+
     def test_three_answer_streak_is_detected(self):
         data = load_fixture()
         for index in range(3):
@@ -100,6 +112,27 @@ class AssessmentValidatorTests(unittest.TestCase):
         self.assertEqual(warning_result["status"], "VALID_WITH_WARNINGS")
         self.assertEqual(strict_result["status"], "INVALID")
         self.assertIn("SOURCE_EVIDENCE_MISSING", codes(strict_result))
+
+    def test_release_mode_requires_source_evidence(self):
+        data = load_fixture()
+        data["questions"][0].pop("source_evidence")
+        result = validate_document(data, source_grounded=True, release=True)
+        self.assertEqual(result["status"], "INVALID")
+        self.assertIn("SOURCE_EVIDENCE_MISSING", codes(result))
+
+    def test_marked_weak_distractor_blocks_release(self):
+        data = load_fixture()
+        data["questions"][0]["options"][1]["distractor_quality"] = "weak"
+        result = validate_document(data, release=True)
+        self.assertEqual(result["status"], "INVALID")
+        self.assertIn("WEAK_DISTRACTOR_SIGNAL", codes(result))
+
+    def test_expected_question_count_is_enforced(self):
+        data = load_fixture()
+        data["expected_question_count"] = 25
+        result = validate_document(data, release=True)
+        self.assertEqual(result["status"], "INVALID")
+        self.assertIn("QUESTION_COUNT", codes(result))
 
     def test_valid_level_five_scenario_passes(self):
         data = load_fixture()

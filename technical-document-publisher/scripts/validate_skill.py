@@ -12,9 +12,11 @@ required = [
     "references/publication-workflow.md",
     "references/visual-qa.md",
     "references/structural-fidelity.md",
+    "references/release-manifest.md",
     "references/pais-profile-notes.md",
     "examples/activation-examples.md",
     "scripts/validate_publication_structure.py",
+    "scripts/validate_release_manifest.py",
     "tests/test_validator.py",
 ]
 
@@ -30,7 +32,7 @@ else:
         front = m.group(1)
         if not re.search(r"^name:\s*technical-document-publisher\s*$", front, re.M):
             errors.append("Wrong skill name")
-        if 'version: "0.4.0"' not in front:
+        if 'version: "0.5.0"' not in front:
             errors.append("Wrong version")
 
 for rel in required:
@@ -39,7 +41,7 @@ for rel in required:
 
 text = skill.read_text(encoding="utf-8") if skill.exists() else ""
 for phrase in [
-    "thin publication-orchestration skill",
+    "publication-orchestration skill",
     "Markdown is the content Source of Truth",
     "No content mutation during publication",
     "Installed `doc` skill is the DOCX engine",
@@ -47,6 +49,10 @@ for phrase in [
     "Visual QA",
     "structural-fidelity",
     "TOC",
+    "FINAL RELEASE MODE",
+    "Source Readiness",
+    "assessment-question-designer",
+    "publication-manifest.json",
 ]:
     if phrase.lower() not in text.lower():
         errors.append(f"Missing core rule: {phrase}")

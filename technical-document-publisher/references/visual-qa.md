@@ -18,8 +18,10 @@ For each page record `page`, `status`, and `issues`. Check:
 - font fallback or glyph corruption.
 
 Blocking page issues are `BROKEN`, `CLIPPED`, `OVERLAPPED`, `EMPTY_TOC`,
-`MARKDOWN_LEAK`, and `LIST_NUMBERING_BROKEN`. A document with any blocking
-page issue is `PUBLICATION BLOCKED`.
+`MARKDOWN_LEAK`, `LIST_NUMBERING_BROKEN`, `ORPHAN_PAGE`, and
+`SPARSE_FINAL_PAGE`. A document with any blocking page issue is
+`PUBLICATION BLOCKED`. A short final page is repaired through style/layout
+parameters only; technical source content must not be rewritten to fill it.
 
 If the environment supports visual inspection, inspect every rendered page at
 100% zoom. If it supports only automated checks, label the report `automatic

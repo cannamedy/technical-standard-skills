@@ -67,6 +67,7 @@ def validate_document(
     *,
     strict: bool = False,
     source_grounded: bool | None = None,
+    release: bool = False,
 ) -> dict[str, Any]:
     """Return a VALID, VALID_WITH_WARNINGS, or INVALID validation result."""
 
@@ -85,6 +86,13 @@ def validate_document(
     if not isinstance(expected_count, int) or isinstance(expected_count, bool) or expected_count not in range(2, 27):
         _add(errors, "MALFORMED_SCHEMA", "expected_option_count must be an integer from 2 to 26")
         expected_count = 4
+    declared_question_count = document.get("expected_question_count")
+    if declared_question_count is not None and (
+        not isinstance(declared_question_count, int)
+        or isinstance(declared_question_count, bool)
+        or declared_question_count < 1
+    ):
+        _add(errors, "MALFORMED_SCHEMA", "expected_question_count must be a positive integer")
 
     ids: set[str] = set()
     answers: list[str] = []
@@ -199,6 +207,8 @@ def validate_document(
                 distractors_annotated += 1
             else:
                 _add(warnings, "NON_DIAGNOSTIC_DISTRACTOR", f"Distractor {label} lacks misconception metadata", question_id)
+            if option_map[label].get("distractor_quality") in {"weak", "silly", "obvious"}:
+                _add(warnings, "WEAK_DISTRACTOR_SIGNAL", f"Distractor {label} is marked {option_map[label]['distractor_quality']}", question_id)
 
         if any(ALL_NONE_OPTION.search(text) for text in option_texts):
             _add(warnings, "ABSOLUTE_OPTION", "Option uses all/none-of-the-above wording", question_id)
@@ -261,6 +271,7 @@ def validate_document(
 
     summary = {
         "questions": len(items),
+        "release_mode": release,
         "answer_distribution": distribution,
         "longest_streak": longest_streak,
         "option_length_warnings": sum(issue["code"] in {"OPTION_LENGTH_IMBALANCE", "OPTION_LENGTH_LEAK", "CORRECT_LONGEST_SYSTEMATIC"} for issue in warnings),
@@ -271,7 +282,24 @@ def validate_document(
         },
         "difficulty_distribution": difficulty_distribution,
     }
-    return _result(errors, warnings, summary)
+    if declared_question_count is not None and declared_question_count != len(items):
+        _add(errors, "QUESTION_COUNT", f"Expected {declared_question_count} questions, found {len(items)}")
+    if release:
+        release_blocking_codes = {
+            "ANSWER_POSITION_BIAS", "ANSWER_STREAK", "ANSWER_PATTERN",
+            "SOURCE_EVIDENCE_MISSING", "NON_DIAGNOSTIC_DISTRACTOR", "WEAK_DISTRACTOR_SIGNAL",
+            "TAIL_QUALITY_DEGRADATION", "AMBIGUOUS_ANSWER",
+        }
+        promoted = [warning for warning in warnings if warning["code"] in release_blocking_codes]
+        errors.extend(promoted)
+        warnings = [warning for warning in warnings if warning["code"] not in release_blocking_codes]
+    result = _result(errors, warnings, summary)
+    result["summary"]["release_blocking_findings"] = len([issue for issue in errors if issue["code"] in {
+        "ANSWER_POSITION_BIAS", "ANSWER_STREAK", "ANSWER_PATTERN", "SOURCE_EVIDENCE_MISSING",
+        "NON_DIAGNOSTIC_DISTRACTOR", "WEAK_DISTRACTOR_SIGNAL", "TAIL_QUALITY_DEGRADATION",
+        "OPTION_LENGTH_IMBALANCE", "OPTION_LENGTH_LEAK", "CORRECT_LONGEST_SYSTEMATIC", "AMBIGUOUS_ANSWER",
+    }])
+    return result
 
 
 def _print_result(result: dict[str, Any], as_json: bool = False) -> None:
@@ -293,6 +321,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("path", type=Path)
     parser.add_argument("--strict", action="store_true", help="Promote missing source evidence to an error")
     parser.add_argument("--source-grounded", action="store_true", help="Treat input as source-grounded")
+    parser.add_argument("--release", action="store_true", help="Apply blocking final-release batch gates")
     parser.add_argument("--json", action="store_true", dest="as_json", help="Emit machine-readable JSON")
     args = parser.parse_args(argv)
     try:
@@ -301,7 +330,7 @@ def main(argv: list[str] | None = None) -> int:
         result = _result([{"code": "MALFORMED_INPUT", "message": str(exc)}], [], {"questions": 0})
         _print_result(result, args.as_json)
         return 1
-    result = validate_document(document, strict=args.strict, source_grounded=True if args.source_grounded else None)
+    result = validate_document(document, strict=args.strict, source_grounded=True if args.source_grounded else None, release=args.release)
     _print_result(result, args.as_json)
     return 1 if result["status"] == "INVALID" else 0
 

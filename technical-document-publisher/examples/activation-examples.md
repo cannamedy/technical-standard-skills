@@ -7,6 +7,8 @@ Use this skill for:
 - "调用 doc Skill，把技术白皮书按 publication profile 发布。"
 - "检查 DOCX 发布版有没有内容丢失和分页问题。"
 - "对 Markdown 与 DOCX 运行 structural fidelity gate，阻止标题、列表和目录语义损坏的产物。"
+- "使用 technical-document-publisher，把这份 Markdown 生成最终可发布 DOCX 和 PDF；自动完成源文档结构审计、题目质量审计、冻结、三层 Fidelity Gate、逐页 QA，并对普通可修复缺陷重建。"
+- "严格按冻结 Markdown 发布，不修改源文档，只输出 DOCX/PDF。"
 
 Do not use it to:
 

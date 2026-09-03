@@ -81,6 +81,7 @@ class DocParagraph:
     num_id: str | None = None
     ilvl: int | None = None
     number_start: int | None = None
+    explicit_start_override: bool = False
 
 
 @dataclass
@@ -230,9 +231,24 @@ def _numbering_starts(docx_path: Path) -> dict[tuple[str, int], int]:
     return starts
 
 
+def _numbering_start_overrides(docx_path: Path) -> set[tuple[str, int]]:
+    overrides: set[tuple[str, int]] = set()
+    with ZipFile(docx_path) as archive:
+        if "word/numbering.xml" not in archive.namelist():
+            return overrides
+        root = etree.fromstring(archive.read("word/numbering.xml"))
+        for node in root.xpath("./w:num", namespaces=NS):
+            num_id = node.get(f"{{{W}}}numId")
+            for override in node.xpath("./w:lvlOverride[w:startOverride]", namespaces=NS):
+                ilvl = override.get(f"{{{W}}}ilvl", "0")
+                overrides.add((num_id, int(ilvl)))
+    return overrides
+
+
 def extract_docx(docx_path: Path) -> DocModel:
     document = Document(str(docx_path))
     starts = _numbering_starts(docx_path)
+    explicit_overrides = _numbering_start_overrides(docx_path)
     model = DocModel(tables=len(document.tables))
     model.table_rows = [[[cell.text.strip() for cell in row.cells] for row in table.rows] for table in document.tables]
     previous_was_list = False
@@ -252,6 +268,7 @@ def extract_docx(docx_path: Path) -> DocModel:
                 num_id=num_id or f"style:{style}",
                 ilvl=ilvl if ilvl is not None else 0,
                 number_start=starts.get((num_id, ilvl or 0)) if num_id else None,
+                explicit_start_override=(num_id, ilvl or 0) in explicit_overrides if num_id else False,
             )
             record.style = f"{kind}:{style}"
             if not previous_was_list and current_run:
@@ -400,6 +417,8 @@ def validate(source_path: Path, docx_path: Path, profile_path: Path | None = Non
             actual_first = next((item for item in actual if item.style.startswith("ordered:")), None)
             if actual_first and actual_first.number_start is not None and int(re.match(r"\d+", first.marker).group()) != actual_first.number_start:
                 findings.append(Finding("LIST_RESTART_MISMATCH", f"list block {index + 1}: expected start {first.marker}, got {actual_first.number_start}"))
+            if actual_first and not actual_first.explicit_start_override:
+                findings.append(Finding("LIST_START_OVERRIDE_MISSING", f"list block {index + 1}: ordered list has no explicit w:startOverride"))
     ordered_ids: list[str] = []
     for run in doc_lists:
         if any(item.style.startswith("ordered:") for item in run):
@@ -444,6 +463,14 @@ def validate(source_path: Path, docx_path: Path, profile_path: Path | None = Non
             findings.append(Finding("TOC_INCOMPLETE", f"TOC is missing {len(missing)} expected entries"))
         if len(document.toc_entries) <= 1 and len(expected_toc) > 1:
             findings.append(Finding("TOC_INCOMPLETE", "TOC contains only a title or one cached entry"))
+        for title in expected_toc:
+            entry = next((value for value in document.toc_entries if title in value), None)
+            if entry is None:
+                continue
+            if not re.search(r"\d+\s*$", entry):
+                findings.append(Finding("TOC_PAGE_NUMBERS_MISSING", f"TOC entry {title!r} has no trailing page number"))
+            if not re.search(r"\.{2,}\s*\d+\s*$", entry):
+                findings.append(Finding("TOC_LEADER_DOTS_MISSING", f"TOC entry {title!r} has no leader dots before its page number"))
 
     blocking = [finding for finding in findings if finding.blocking]
     warnings = [finding for finding in findings if not finding.blocking]

@@ -20,16 +20,20 @@ Structural fidelity answers a different question from content fidelity:
 - ASCII diagram classification and whitespace-preserving lines;
 - table count and cell rows;
 - `MUST`, `SHOULD`, and `MAY` counts;
-- TOC field presence and cached entries up to the profile depth.
+- TOC field presence, cached entries, page numbers, and leader dots up to the
+  profile depth;
+- style-first Word semantics, with direct formatting treated as an exception
+  requiring review.
 
 ## Blocking error codes
 
 `HEADING_LEVEL_MISMATCH`, `HEADING_TEXT_MISSING`,
 `HEADING_HIERARCHY_INVALID`, `LITERAL_MARKDOWN_HEADING_LEAK`,
-`LIST_RESTART_MISMATCH`, `UNEXPECTED_LIST_CONTINUATION`,
+`LIST_RESTART_MISMATCH`, `LIST_START_OVERRIDE_MISSING`, `UNEXPECTED_LIST_CONTINUATION`,
 `LIST_LEVEL_MISMATCH`, `LIST_ITEM_TEXT_MISSING`, `ASCII_DIAGRAM_CLASS_MISMATCH`,
 `ASCII_DIAGRAM_WRAPPED`, `CODE_INDENTATION_CORRUPTED`, `TABLE_ROW_LOSS`,
-`CONTENT_FIDELITY_MISMATCH`, `TOC_EMPTY`, and `TOC_INCOMPLETE` block release.
+`CONTENT_FIDELITY_MISMATCH`, `TOC_EMPTY`, `TOC_INCOMPLETE`,
+`TOC_PAGE_NUMBERS_MISSING`, and `TOC_LEADER_DOTS_MISSING` block release.
 
 Source-level heading jumps are reported as nonblocking
 `SOURCE_HEADING_HIERARCHY_WARNING` when the DOCX preserves them exactly. The
