@@ -6,13 +6,13 @@ description: >
   repository layout, publication profile, artifact naming, content-fidelity gates, and release workflow.
   It does not implement low-level DOCX manipulation itself and must not rewrite technical content.
 metadata:
-  version: "0.3.0"
-  role: "thin-publication-orchestrator"
+  version: "0.4.0"
+  role: "publication-orchestrator-with-fidelity-gates"
 ---
 
 # Technical Document Publisher
 
-This is a **thin publication-orchestration skill**.
+This is a **thin publication-orchestration skill with explicit fidelity gates**.
 
 It does not replace the installed `doc` skill.
 
@@ -48,6 +48,9 @@ technical-document-publisher
 - version/status metadata;
 - cover/front-matter policy;
 - content-fidelity gates;
+- structural-fidelity gate;
+- list numbering and heading mapping policy;
+- TOC verification policy;
 - source-integrity checks;
 - invocation expectations for the installed `doc` skill;
 - release-candidate criteria.
@@ -519,6 +522,36 @@ Before calling an artifact publication-ready, confirm:
 9. publication defects resolved through the publication layer;
 10. no technical content silently changed;
 11. final artifact path recorded.
+
+The following gates are separate and blocking when they fail:
+
+```text
+Source Integrity
+      ↓
+Content Fidelity
+      ↓
+Structural Fidelity
+      ↓
+TOC / Heading / List Fidelity
+      ↓
+Render
+      ↓
+Page-level Visual QA
+```
+
+Use `scripts/validate_publication_structure.py` with the approved Markdown
+and generated DOCX.  It compares heading levels and text, independent list
+numbering instances, nested list levels, code/ASCII classification and
+whitespace, tables, normative keywords, Markdown leakage, and cached TOC
+entries.  A field-only TOC or a successful DOCX open is not sufficient.
+
+The validator returns `VALID`, `VALID_WITH_WARNINGS`, or `INVALID`.  Any
+blocking finding such as `LITERAL_MARKDOWN_HEADING_LEAK`,
+`HEADING_LEVEL_MISMATCH`, `UNEXPECTED_LIST_CONTINUATION`,
+`LIST_LEVEL_MISMATCH`, `ASCII_DIAGRAM_WRAPPED`, `CODE_INDENTATION_CORRUPTED`,
+`TOC_EMPTY`, or `TOC_INCOMPLETE` blocks publication.  A source-level warning
+must be reported and preserved; it must not be repaired by changing the
+authoritative Markdown during publication.
 
 Before human release approval, use:
 

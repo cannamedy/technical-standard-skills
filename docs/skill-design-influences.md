@@ -49,5 +49,11 @@ It deliberately reuses architecture-boundary audits rather than duplicating them
 Assessment question design was distilled as a source-grounded, misconception-based, anti-gaming
 workflow with deterministic validation separated from model judgment.
 
+Publication hardening was distilled from the PAIS release failure: content-presence checks are not
+semantic-structure checks. The publisher now treats heading styles, explicit list numbering
+instances, code/ASCII classification, TOC cache entries, and page-level visual review as separate
+publication gates. Source-level defects remain reported warnings rather than being rewritten by the
+publication layer.
+
 These controls came from real Contract → Planning → Compatibility Audit workflow practice. They are
 generic planner workflow learnings, not requirements or details of any one product repository.

@@ -10,8 +10,12 @@ required = [
     "references/content-fidelity.md",
     "references/publication-profile.md",
     "references/publication-workflow.md",
+    "references/visual-qa.md",
+    "references/structural-fidelity.md",
     "references/pais-profile-notes.md",
     "examples/activation-examples.md",
+    "scripts/validate_publication_structure.py",
+    "tests/test_validator.py",
 ]
 
 errors = []
@@ -26,7 +30,7 @@ else:
         front = m.group(1)
         if not re.search(r"^name:\s*technical-document-publisher\s*$", front, re.M):
             errors.append("Wrong skill name")
-        if 'version: "0.3.0"' not in front:
+        if 'version: "0.4.0"' not in front:
             errors.append("Wrong version")
 
 for rel in required:
@@ -41,6 +45,8 @@ for phrase in [
     "Installed `doc` skill is the DOCX engine",
     "Content fidelity",
     "Visual QA",
+    "structural-fidelity",
+    "TOC",
 ]:
     if phrase.lower() not in text.lower():
         errors.append(f"Missing core rule: {phrase}")

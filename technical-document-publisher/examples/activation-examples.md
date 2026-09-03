@@ -6,6 +6,7 @@ Use this skill for:
 - "建立 PAIS 的 Word 发布流程。"
 - "调用 doc Skill，把技术白皮书按 publication profile 发布。"
 - "检查 DOCX 发布版有没有内容丢失和分页问题。"
+- "对 Markdown 与 DOCX 运行 structural fidelity gate，阻止标题、列表和目录语义损坏的产物。"
 
 Do not use it to:
 

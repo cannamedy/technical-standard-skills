@@ -1,11 +1,15 @@
 {
-  "README.md": "7bab6fde67f33034039ffa303f3ecd95003139332111fc80e60b850af34fd312",
-  "SKILL.md": "7ddfc64dc4344a3b79ef321ee55ec181971f459c736f906e0e4829ab966d8026",
-  "examples/activation-examples.md": "01affec2eab6714ddfc5233ad87ea22ebdaec68a105449d936e9ef1b611a507a",
-  "references/content-fidelity.md": "16d44dba8b4829a8b8a261820dcd1fae455032f657e0195c78eeec60c01b8537",
+  "README.md": "4f907ab7041fd2f4fefce82815b2804947095f3bda3ef3366e6bd90e2339b8b6",
+  "SKILL.md": "aa63eb7908a020f23844690b180c841350a63d0e7b3c28ec30172832584cc58c",
+  "examples/activation-examples.md": "58d15026ddb3482473387257d2d14f281d606d4db0f27120f4570d32479eb95b",
+  "references/content-fidelity.md": "b12dd30ec41b67869769ea28add1a0560d006446749188c54c571bfa274651fc",
   "references/pais-profile-notes.md": "4e2f37e5e62519d50a1f75fc0aa03dc8750c47b998b940b065e811ec6de3cbd6",
-  "references/publication-profile.md": "00e565fb98d4eb2e9307477f82e115a52114e0b2e290a175ddea02e1fdd5aa84",
-  "references/publication-workflow.md": "98b4e6030b0cba782abec7e20c6b7c56227deec77717ff3dccc24968405bce98",
-  "references/source-of-truth.md": "72eb274d48bfb4c6756c5bd29ce64a4d2294f16bea8a8c9b3c2dc0b72da0cd78",
-  "scripts/validate_skill.py": "6e9fbc9467eb3c878b478192ba160f3adc67cc8b5fa76b5aeeea38c85e812166"
+  "references/publication-profile.md": "b8f79d679ab363b375ef13fc37f5997e37ffd753e18319a419684cce6380bae4",
+  "references/publication-workflow.md": "1c7de50529f4aa3c3938df3ad6e25000a46655b9c55819e7627dae52cb498dd0",
+  "references/source-of-truth.md": "aea75eb9ae4083cacf5da6ab01ec6d850cdb5201347fba9deac4dd11405da985",
+  "references/structural-fidelity.md": "79a1bc777b415a801cfa794de499d65ae128d74af02b13a5ae96fe7b2744b563",
+  "references/visual-qa.md": "3d49492b3bb3b19982051cbe89b53381ea28f87dda1a481dd5296287d3e12b28",
+  "scripts/validate_publication_structure.py": "95cec8d7840670095252117293b975d8049f3762efa1bc48f122d10c2c24ec20",
+  "scripts/validate_skill.py": "a4e2d2f95f99d1aba3685218f4d787cad411dad6ec9237c8e2339bd862aae014",
+  "tests/test_validator.py": "3658028182b4cd5330251d6523bd3666a74f4dbe9cfe233d91700dc4e3a92f17"
 }
