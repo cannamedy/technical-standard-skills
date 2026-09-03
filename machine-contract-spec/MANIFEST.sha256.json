@@ -1,0 +1,14 @@
+{
+  "README.md": "238647f2955489e49bba5be7d9e6e8596c95a373d494c3df3dbca685d2a4583a",
+  "SKILL.md": "0224d2034069c11df848548b7a36a09d1a094ef7e79f669154ee87a105902b7e",
+  "agents/openai.yaml": "06947a2938058cd013ef6149c1b5bbe774f79aa8cb3ba5e440b79b0d4ed31e95",
+  "examples/projection-examples.md": "06907926760727224393a564ed5ca7bbb022a4118ba0284eed5057036474bd45",
+  "references/compatibility-audit.md": "2a8dd0ffcdb283acb2016767bb8bb19589c62223ee8f4d3c1cd1ab00916df464",
+  "references/invariant-modeling.md": "199ed789a382390643b6442039cb81089dcf54e957b61cf36867c3f3068ac073",
+  "references/machine-representability.md": "79b4de8b952421a913ed9f140399229dc10ed1b6f7d19c5191ec5c8f689c5732",
+  "references/normative-coverage.md": "257e794973622c53810b97989c321c0e93ead2f4c34326f7fcc7d42242236ede",
+  "references/review-checklist.md": "6e6a340c9ac8430e863bd5c6278044bb9313c4e94c3f7a314ebe161155b1b6ef",
+  "references/schema-projection.md": "71263d119a7c6fc50e4971a092b53c1c89ba1bc3c1d7f3069701d02d9ff13591",
+  "references/state-machine-contracts.md": "b77a32cc5938465257085c43a620b5d108606965dd2b8d3568c6af5f327cd80a",
+  "scripts/validate_skill.py": "57b0b99e9044f9c778c0b357d4b181cc2797636ba17da8b06d62128789e2500e"
+}

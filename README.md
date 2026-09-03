@@ -1,11 +1,12 @@
 # Technical Standard Skills
 
-Reusable, Agent-neutral Skills for technical standard architecture, engineering contracts, implementation planning, contract-driven coding, and publication workflows.
+Reusable, Agent-neutral Skills for technical standard architecture, engineering contracts, machine-contract projection, implementation planning, contract-driven coding, and publication workflows.
 
-包含六个 Skill：
+包含七个 Skill：
 
 - technical-specification-guide v0.5.1
 - engineering-contract-spec v0.3.0
+- machine-contract-spec v0.1.0
 - contract-implementation-planner v0.2.1
 - contract-driven-coding v0.1.1
 - technical-document-publisher v0.4.0
@@ -15,6 +16,7 @@ Reusable, Agent-neutral Skills for technical standard architecture, engineering 
 
 - technical-specification-guide v0.5.1
 - engineering-contract-spec v0.3.0
+- machine-contract-spec v0.1.0
 - contract-implementation-planner v0.2.1
 - contract-driven-coding v0.1.1
 - technical-document-publisher v0.4.0

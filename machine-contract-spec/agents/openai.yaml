@@ -1,0 +1,11 @@
+interface:
+  display_name: "machine contract spec"
+  short_description: "Project specifications into machine contracts"
+  default_prompt: "Use $machine-contract-spec to generate or review a machine-verifiable contract from an approved Engineering Specification."
+policy:
+  products:
+  - "chatgpt"
+  - "codex"
+  - "api"
+  - "atlas"
+  allow_implicit_invocation: true

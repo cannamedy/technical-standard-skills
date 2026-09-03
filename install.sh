@@ -7,6 +7,7 @@ agents_skills_dir="${HOME}/.agents/skills"
 skills=(
   technical-specification-guide
   engineering-contract-spec
+  machine-contract-spec
   contract-implementation-planner
   contract-driven-coding
   technical-document-publisher
