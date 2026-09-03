@@ -1,19 +1,20 @@
 {
-  "README.md": "0c92300c3b7c7d4257ab3336a6b0b5c0312448c8c99f6de10fa7c85131e757ec",
-  "SKILL.md": "94bbf213c467bf5f23d887f40a4de7c671054278a1812d8beb513514e2f15e5b",
+  "README.md": "33017a1b4246a82eafef0a606c81b59f13785e2953d74d2b8edd394329c7f41e",
+  "SKILL.md": "a55fccec6e858f445c77cd0c8a4daa29953516c0dea624b2ec168f59f9a672b2",
   "agents/openai.yaml": "8e547d7a9470b13eac1226e7acd7899111d4b4aa5218a29f21384edb5fa14f3e",
   "examples/activation-examples.md": "86cf1fd00c5b554f6727576bb88336d505465cc5f143bebda796999aca4dd1ca",
   "references/content-fidelity.md": "b12dd30ec41b67869769ea28add1a0560d006446749188c54c571bfa274651fc",
+  "references/human-readability-gate.md": "0b8b5f98925d32c4f8e22f5bd10874f1c9806262c48382653232585a02e3cdc4",
   "references/pais-profile-notes.md": "4e2f37e5e62519d50a1f75fc0aa03dc8750c47b998b940b065e811ec6de3cbd6",
   "references/publication-profile.md": "524af2babe79d89046d4f85448613f7ac294af4edd77a333e9b177106ee49260",
   "references/publication-workflow.md": "1c7de50529f4aa3c3938df3ad6e25000a46655b9c55819e7627dae52cb498dd0",
-  "references/release-manifest.md": "0893c11cc490d8d30bb9288a533012204127458965eca569bd3ee12bb33b6f3a",
+  "references/release-manifest.md": "d3de1eb4b50739894a619fac49faa26917fabbce720003ed73ed870e26adc923",
   "references/source-of-truth.md": "aea75eb9ae4083cacf5da6ab01ec6d850cdb5201347fba9deac4dd11405da985",
   "references/structural-fidelity.md": "e26eb5ab0d71b05ec2dfa2cc23e1cab3cc746c91a087f8b5c16593eb7bc82657",
   "references/visual-qa.md": "3767c5156c04865d6d8e667aeecd18a0176b31b81fe85fa9c2d943da763cf6de",
   "scripts/validate_publication_structure.py": "918be42c9218fd6e74190e1773bc78007f07f80c81b510f54ff1a5b49ed56731",
-  "scripts/validate_release_manifest.py": "2dbb21083316d7fe3206f8d39164a96c1307feae90827a963785a6befe0c62b0",
-  "scripts/validate_skill.py": "db522c6c40089cd4ddabbdd5ebb5bd0bb4fe263b6fad50456367edad59160295",
-  "tests/test_release_manifest.py": "9d1475749bb9466c24096c94f04662b600f0beca581bb500ff8a60c10328c619",
-  "tests/test_validator.py": "9296a8a2ba3134a7ffed1a9b906d121980b2e1f9d2015eb819d4ad4cfa4ad364"
+  "scripts/validate_release_manifest.py": "b209f5ca633cbd853b16cd4114562f39bd97e9a264fdaacc775f621769a1642e",
+  "scripts/validate_skill.py": "5a21bbd9178f1b1f0df2fa888f3c62559d3e7024c33a9f703b1ea85125eeebb4",
+  "tests/test_release_manifest.py": "ae082910e7e4624168484df77e1cdbb8fd5cd71e5898fb904c1da7d5c65ecacb",
+  "tests/test_validator.py": "2449bd45e075bcfd337e087c1478c9ce90e4ef0cebcbe97ceff48064e4caa4b9"
 }

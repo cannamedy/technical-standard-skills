@@ -11,6 +11,11 @@ audit = importlib.util.module_from_spec(SPEC)
 assert SPEC.loader is not None
 sys.modules[SPEC.name] = audit
 SPEC.loader.exec_module(audit)
+READER_SPEC = importlib.util.spec_from_file_location("reader_first_audit", ROOT / "scripts" / "audit_reader_first.py")
+reader_audit = importlib.util.module_from_spec(READER_SPEC)
+assert READER_SPEC.loader is not None
+sys.modules[READER_SPEC.name] = reader_audit
+READER_SPEC.loader.exec_module(reader_audit)
 
 
 class SourceAuditTests(unittest.TestCase):
@@ -37,6 +42,19 @@ class SourceAuditTests(unittest.TestCase):
         codes = {f["code"] for f in result["findings"]}
         self.assertIn("LEGACY_SECTION_NUMBERING_CONFLICT", codes)
         self.assertIn("RUNTIME_MICROSTEP_OUTLINE_INFLATION", codes)
+
+    def test_reader_first_fixture_signals_are_explicitly_classified(self):
+        cases = ROOT / "tests" / "fixtures" / "reader_first_cases"
+        self.assertIn("CONCEPT_GLOSSARY_WALL", {f["code"] for f in reader_audit.audit_text((cases / "01_glossary_heavy.md").read_text(encoding="utf-8"))["findings"]})
+        self.assertIn("DESIGN_SPINE_MISSING", {f["code"] for f in reader_audit.audit_text((cases / "02_principles_isolated.md").read_text(encoding="utf-8"))["findings"]})
+        self.assertEqual(reader_audit.audit_text((cases / "03_reader_entry_pass.md").read_text(encoding="utf-8"))["status"], "HUMAN_READABILITY_PASS")
+        self.assertIn("TEMPLATE_RHYTHM_OVERUSE", {f["code"] for f in reader_audit.audit_text((cases / "04_template_rhythm.md").read_text(encoding="utf-8"))["findings"]})
+        self.assertIn("ABSTRACT_NOUN_STACKING", {f["code"] for f in reader_audit.audit_text((cases / "05_abstract_nouns.md").read_text(encoding="utf-8"))["findings"]})
+        self.assertIn("CHINESE_ENGLISH_FRAGMENTATION", {f["code"] for f in reader_audit.audit_text((cases / "06_mixed_language.md").read_text(encoding="utf-8"))["findings"]})
+        self.assertEqual(reader_audit.audit_text((cases / "07_good_mixed_language.md").read_text(encoding="utf-8"))["status"], "HUMAN_READABILITY_PASS")
+        self.assertEqual(reader_audit.audit_text((cases / "08_concrete_before_abstract.md").read_text(encoding="utf-8"))["status"], "HUMAN_READABILITY_PASS")
+        self.assertEqual(reader_audit.audit_text((cases / "09_propagated_principle.md").read_text(encoding="utf-8"))["status"], "HUMAN_READABILITY_PASS")
+        self.assertEqual(reader_audit.audit_text((cases / "10_deep_without_simplification.md").read_text(encoding="utf-8"))["status"], "HUMAN_READABILITY_PASS")
 
 
 if __name__ == "__main__":

@@ -22,6 +22,7 @@ def candidate():
         "artifacts": {"docx_path": "a.docx", "docx_hash": "a", "pdf_path": "a.pdf", "pdf_hash": "b", "page_count": 4},
         "gates": {
             "source_readiness": {"status": "SOURCE_READY"},
+            "human_readability": {"status": "HUMAN_READABILITY_PASS"},
             "content_fidelity": {"status": "PASS"}, "structural_fidelity": {"status": "PASS"},
             "visual_fidelity": {"status": "PASS", "page_level_qa": "qa.md"},
         },

@@ -13,6 +13,7 @@ required = [
     "references/visual-qa.md",
     "references/structural-fidelity.md",
     "references/release-manifest.md",
+    "references/human-readability-gate.md",
     "references/pais-profile-notes.md",
     "examples/activation-examples.md",
     "scripts/validate_publication_structure.py",
@@ -32,7 +33,7 @@ else:
         front = m.group(1)
         if not re.search(r"^name:\s*technical-document-publisher\s*$", front, re.M):
             errors.append("Wrong skill name")
-        if 'version: "0.5.0"' not in front:
+        if 'version: "0.6.0"' not in front:
             errors.append("Wrong version")
 
 for rel in required:
@@ -51,6 +52,8 @@ for phrase in [
     "TOC",
     "FINAL RELEASE MODE",
     "Source Readiness",
+    "HUMAN READABILITY GATE",
+    "Reader-first Architecture Writing",
     "assessment-question-designer",
     "publication-manifest.json",
 ]:

@@ -36,6 +36,7 @@ repair.
   },
   "gates": {
     "source_readiness": {"status": "SOURCE_READY", "report": "..."},
+    "human_readability": {"status": "HUMAN_READABILITY_PASS", "report": "..."},
     "assessment": {"status": "NOT_APPLICABLE", "report": null},
     "content_fidelity": {"status": "PASS", "report": "..."},
     "structural_fidelity": {"status": "PASS", "report": "..."},

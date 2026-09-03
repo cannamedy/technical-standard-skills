@@ -6,7 +6,7 @@ description: >
   repository layout, publication profile, artifact naming, content-fidelity gates, and release workflow.
   It does not implement low-level DOCX manipulation itself and must not rewrite technical content.
 metadata:
-  version: "0.5.0"
+  version: "0.6.0"
   role: "end-to-end-technical-document-release-orchestrator"
 ---
 
@@ -54,6 +54,7 @@ technical-document-publisher
 - TOC verification policy;
 - source-integrity checks;
 - final-release mode and source-readiness orchestration;
+- Human Readability Gate orchestration through `technical-specification-guide`;
 - assessment-section discovery and quality-gate routing;
 - invocation expectations for the installed `doc` skill;
 - release-candidate criteria.
@@ -204,6 +205,22 @@ stop with `PUBLICATION BLOCKED` and `BLOCKED_NEEDS_HUMAN_DECISION`.
 The publisher owns the final release gate, not the upstream content judgments. It MUST automatically
 route a detected assessment section to `assessment-question-designer`; it MUST NOT claim that a
 deterministic scan has proven distractor plausibility or architecture correctness.
+
+### 3.4 Human Readability Gate
+
+FINAL RELEASE MODE MUST run a **HUMAN READABILITY GATE** during Source Readiness. The publisher does
+not author prose or decide architecture. It invokes the installed `technical-specification-guide`
+Reader-first Architecture Writing review for Early Reader Mental Model coverage, a One-page Mental
+Map, a Reader-facing Design Spine, Principle Propagation, Concept Introduction, Concrete-before-
+Abstract ordering, Runtime Narrative Continuity, Heading Ontology, anti-AI language patterns,
+Chinese-first technical prose, tail quality, and publication cleanliness.
+
+The upstream review returns `HUMAN_READABILITY_PASS`, `HUMAN_READABILITY_REVIEW`, or
+`HUMAN_READABILITY_FAIL`. `HUMAN_READABILITY_FAIL` is blocking and MUST delegate source repair to
+`technical-specification-guide`, then re-audit and refreeze before DOCX generation. A review signal
+may proceed only when its source-aware disposition, evidence, ownership, and non-blocking rationale
+are recorded in the release manifest. The publisher MUST NOT accept a structurally valid, visually
+polished document whose reader entry or architecture narrative is demonstrably broken.
 
 ---
 

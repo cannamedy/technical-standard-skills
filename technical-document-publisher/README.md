@@ -1,4 +1,4 @@
-# technical-document-publisher v0.5.0
+# technical-document-publisher v0.6.0
 
 A publication-orchestration skill with source-readiness, assessment, content, structural, and visual
 release gates.
@@ -49,7 +49,7 @@ python technical-document-publisher/scripts/validate_publication_structure.py \
   --profile publishing/publication-profile.yaml
 ```
 
-Version 0.5 adds FINAL RELEASE MODE, Source Readiness and Assessment routing,
+Version 0.6 adds the Human Readability Gate and reader-first upstream routing. Version 0.5 added FINAL RELEASE MODE, Source Readiness and Assessment routing,
 three distinct fidelity gates, an explicit repair/rebuild loop, and a release
 manifest while retaining the separation between publisher policy and low-level
 DOCX/rendering implementation owned by the installed `doc` skill.

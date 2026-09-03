@@ -10,7 +10,7 @@ description: >
   explicit change is requested. Do not silently simplify, invent architecture, or insert writing-process
   language into the publication.
 metadata:
-  version: "0.6.0"
+  version: "0.7.0"
   role: "human-readable-detailed-technical-guide-with-source-readiness-audit"
 ---
 
@@ -331,6 +331,51 @@ The script reports heuristics as findings requiring reasoning review. It MUST NO
 regular expression has established architectural meaning. A source repair MUST preserve technical
 meaning, architecture decisions, normative strength, and source-grounded assessment evidence.
 After any repair, rerun the complete audit and record a normative keyword delta.
+
+## 3.5 Reader-first Architecture Writing
+
+For a complex architecture guide, activate **Reader-first Architecture Writing**. Its success
+criterion is not that every concept has a definition. It is that a first-time technical reader can
+construct the architecture in their own mental model while the guide retains technical depth.
+
+The method has these obligations:
+
+1. **Early Reader Mental Model Gate** — within roughly the first 10–15% of the document, a reader
+   SHOULD be able to state what the system is, the problem it solves, why the existing mechanism is
+   insufficient, the central standardized object, what changes for a consumer, and what remains
+   outside the system's responsibility. This is a gate, not a mandatory chapter template.
+2. **One-page Mental Map** — before a large object model, provide a low-cognitive-load map, short
+   table, or before/after explanation that gives the reader a place to attach later concepts. It
+   MUST NOT become a glossary compressed into one diagram.
+3. **Reader-facing Design Spine** — distill the architecture constitution into roughly 3–7 ideas
+   that explain why later objects and runtime stages exist. Preserve the complete formal principles;
+   the spine is a memory aid, not a replacement constitution.
+4. **Principle Propagation Audit** — trace each spine idea through the problem, concept, runtime,
+   boundary, example, and counterexample where applicable. A principle that appears only in a late
+   principles chapter is a propagation gap.
+5. **Concept Introduction Rule** — prefer `engineering problem → insufficient existing mechanism →
+   minimum necessary concept → concrete example → formal name/boundary`. Do not build a glossary
+   wall before the reader has a question that requires the term.
+6. **Concrete-before-Abstract Rule** — explain a difficult abstraction with an observable situation
+   before giving its formal definition, while keeping the formal definition and normative scope.
+7. **Runtime Narrative Rule** — write an end-to-end example as a continuous engineering story in
+   which each answer creates the next question. Repeated local labels such as What/Why/How/Boundary
+   are review signals, not required headings.
+8. **Chinese-first Technical Prose** — retain stable canonical English terms when they name protocol
+   objects, but use natural Chinese for ordinary explanation. English is for precision, not texture.
+
+The **Anti-AI Language** review is a pattern-overuse check, not a blacklist of valid technical phrasing.
+Use `references/reader-first-architecture-writing.md` for the full review method and
+`references/anti-ai-language.md` for pattern-overuse review. Run
+`scripts/audit_reader_first.py` for deterministic signals. Its output separates `blocking` findings
+from `review` signals; regex counts cannot decide whether a sentence is technically justified,
+whether a principle really propagates, or whether a term is useful. Those judgments require direct
+reading and the structured finding format from the Deep Architecture Audit.
+
+The reader-first gate MUST also check information density, tail quality, concept overload, repeated
+template rhythm, abstract-noun stacking, artificial symmetry, rhetorical closure, and whether the
+English terminology helps or harms the reader's mental model. It MUST NOT improve readability by
+deleting technical depth, inventing architecture, or multiplying headings.
 
 # 4. Semantic propagation
 

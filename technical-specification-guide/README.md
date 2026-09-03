@@ -1,4 +1,4 @@
-# technical-specification-guide v0.5.1
+# technical-specification-guide v0.7.0
 
 Purpose:
 
@@ -30,6 +30,13 @@ Key v0.5 changes:
   rationale, normative separation, alternative sufficiency, reader-derived conclusions, and
   specification-dump detection;
 - Explicit reuse of Deep Architecture Audit for responsibility ownership and architecture boundaries.
+
+Key v0.7 changes:
+- Reader-first Architecture Writing and the Early Reader Mental Model Gate;
+- One-page Mental Map and Reader-facing Design Spine;
+- Principle Propagation and concrete-before-abstract review;
+- Anti-AI Language pattern-overuse audit and Chinese-first prose guidance;
+- deterministic reader-first signals separated from source-aware reasoning findings.
 
 The v0.2 philosophy is deliberately more restrained than v0.1:
 do less rewriting, preserve more information, and require the final document to be demonstrably better than the preferred source.

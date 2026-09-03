@@ -10,14 +10,14 @@ from pathlib import Path
 
 READY = "PUBLICATION CANDIDATE READY FOR HUMAN RELEASE REVIEW"
 BLOCKED = {"PUBLICATION BLOCKED", "BLOCKED_NEEDS_HUMAN_DECISION"}
-READY_GATE_STATUSES = {"PASS", "SOURCE_READY", "NOT_APPLICABLE", "VALID_WITH_WARNINGS", "PASS_WITH_WARNINGS"}
+READY_GATE_STATUSES = {"PASS", "SOURCE_READY", "HUMAN_READABILITY_PASS", "HUMAN_READABILITY_REVIEW", "NOT_APPLICABLE", "VALID_WITH_WARNINGS", "PASS_WITH_WARNINGS"}
 REQUIRED = (
     ("schema_version",), ("mode",), ("status",),
     ("source", "path"), ("source", "hash_before_repair"), ("source", "hash_frozen"),
     ("source", "modifications"), ("skills",), ("inputs",), ("artifacts",),
     ("artifacts", "docx_path"), ("artifacts", "docx_hash"),
     ("artifacts", "pdf_path"), ("artifacts", "pdf_hash"), ("artifacts", "page_count"),
-    ("gates", "source_readiness"), ("gates", "content_fidelity"),
+    ("gates", "source_readiness"), ("gates", "human_readability"), ("gates", "content_fidelity"),
     ("gates", "structural_fidelity"), ("gates", "visual_fidelity"),
     ("normative_keyword_delta",), ("iterations",),
 )

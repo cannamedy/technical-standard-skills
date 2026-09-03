@@ -15,6 +15,8 @@ required = [
     "references/deep-architecture-audit.md",
     "references/whitepaper-rationale-quality.md",
     "references/document-structure-ontology.md",
+    "references/reader-first-architecture-writing.md",
+    "references/anti-ai-language.md",
     "references/review-checklist.md",
     "references/golden-style.md",
     "references/review-method.md",
@@ -38,7 +40,7 @@ else:
         front = m.group(1)
         if not re.search(r"^name:\s*technical-specification-guide\s*$", front, re.M):
             errors.append("Wrong skill name")
-        if not re.search(r'^  version:\s*["\']0\.6\.0["\']\s*$', front, re.M):
+        if not re.search(r'^  version:\s*["\']0\.7\.0["\']\s*$', front, re.M):
             errors.append("Wrong version")
         if "description:" not in front:
             errors.append("Missing description")
@@ -105,6 +107,16 @@ for phrase in [
     "SOURCE_REPAIR_REQUIRED",
     "runtime microstep",
     "legacy visible numbering",
+    "Reader-first Architecture Writing",
+    "Early Reader Mental Model Gate",
+    "One-page Mental Map",
+    "Reader-facing Design Spine",
+    "Principle Propagation Audit",
+    "Concrete-before-Abstract Rule",
+    "Anti-AI Language",
+    "Chinese-first Technical Prose",
+    "abstract-noun stacking",
+    "template rhythm",
 ]:
     if phrase.lower() not in normalized_text:
         errors.append(f"Missing core rule: {phrase}")
