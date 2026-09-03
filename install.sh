@@ -9,6 +9,7 @@ skills=(
   engineering-contract-spec
   machine-contract-spec
   conformance-specification
+  implementation-design-guide
   contract-implementation-planner
   contract-driven-coding
   technical-document-publisher

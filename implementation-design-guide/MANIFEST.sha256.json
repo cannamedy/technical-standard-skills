@@ -1,0 +1,16 @@
+{
+  "README.md": "314a005504c7949608e7449568eafabb2f5c14dd693afdcbd1eb27fdee50da9c",
+  "SKILL.md": "a229107b6394c980903095cb05810f824ac25baa61873059c82bdeb861cda10c",
+  "agents/openai.yaml": "9d50bed007a6dac40fc8c087349575ffe83b83cc538f208e04012b80a63368f4",
+  "examples/design-examples.md": "5cf8b9a93ebf5128ebb730f9a23bf842535e56a82da52073e2753ac3a252f83b",
+  "references/component-boundaries.md": "0e3c5b85028d2c95722d3f2eeb4289a16151bba6c3f07137788604cc1b66870a",
+  "references/conformance-realization.md": "8f1d349cfdfba44dfb2c5b05c9fa55420b61a4fbe1c7f2eeecde334da47e5e54",
+  "references/data-and-state-ownership.md": "83ace50ffe1ede8850f848ada0784059bf31f401d18cb80fdacf4279a85bb0fd",
+  "references/failure-recovery.md": "20b51b190ec8704fa3052a7d68986ef99aeca023e17a0e6637a3ffb7bc73012b",
+  "references/incremental-design.md": "bba09e6a21ce3d18eccd5c11e4d46b8c683a4e08521e327a7f62808a7deb59bf",
+  "references/lifecycle-and-errors.md": "e1feeef8d7f0865d62e90a02e38da1947e228cef00df26a16d1fe7f6d363264e",
+  "references/machine-contract-realization.md": "7cc9a1a770fae5a8663f8f361317018ef114bb546a9ed15ee079c64738a6dcc4",
+  "references/responsibility-ownership.md": "da42032b024255d067c93dad84a8014c4ff2a3690a38f5d45a8642bdf6cc56d3",
+  "references/review-checklist.md": "99d53ea2c2d4cbe42b917091bb34b8cf592eb8a36a6c90ce641d1704d20d0718",
+  "scripts/validate_skill.py": "cb7d1750a761a34c819bc262f2188df088087691aaf75cd25a5be62466f0576a"
+}

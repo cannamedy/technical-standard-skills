@@ -1,0 +1,11 @@
+interface:
+  display_name: "implementation design guide"
+  short_description: "Design internal realization of approved contracts"
+  default_prompt: "Use $implementation-design-guide to create or review an implementation design from approved normative artifacts."
+policy:
+  products:
+  - "chatgpt"
+  - "codex"
+  - "api"
+  - "atlas"
+  allow_implicit_invocation: true
