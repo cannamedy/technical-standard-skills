@@ -1,0 +1,11 @@
+interface:
+  display_name: "conformance specification"
+  short_description: "Define evidence for specification conformance"
+  default_prompt: "Use $conformance-specification to generate or review deterministic conformance obligations from an approved Engineering Specification and Machine Contract."
+policy:
+  products:
+  - "chatgpt"
+  - "codex"
+  - "api"
+  - "atlas"
+  allow_implicit_invocation: true

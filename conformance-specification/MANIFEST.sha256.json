@@ -1,0 +1,15 @@
+{
+  "README.md": "7cf9013d6c667ea0e86ee24eb0118e9c42fbf74a24cce54129be795b13e492c5",
+  "SKILL.md": "8e69aa4d079e1edb147182b042ba9e9c96ea168e83f84029fe09fdcb638441c9",
+  "agents/openai.yaml": "42c4d51e3d46ca29b2e0fbabd7f529ff1f5087c36df801f28ad82981ec31bb90",
+  "examples/conformance-examples.md": "f49d77131674200eb12bf7667fea1647813ec7cb5b0c48e7d9d90f7d35c9b1fc",
+  "references/coverage-closure.md": "b1b76804f27e7fdff76bf31f22271f72896e33e7907e8e45768d791dda446e5e",
+  "references/evidence-and-verdicts.md": "2bed27eafa6838dee4280a9d7b2825fadd19b8d6edade69549ee03ca2eef6418",
+  "references/interop-conformance.md": "0b6e9c6dc250d5b2ad669500a75930c33f04aedbc76b567fb05f6bf52cc7264a",
+  "references/lifecycle-temporal.md": "dc135f0c15db3952b375d7c4cd9c4b0993b873a2388e434a82392d0442434f93",
+  "references/normative-obligations.md": "483e3f04c5b5abf4090fdc97d1d2118ca5272adc77cd9d39e74afeef550da74c",
+  "references/profile-applicability.md": "c46c13a84badf65966f3918cad799ad293187d11a2d0e85cbc8a55e482af955a",
+  "references/review-checklist.md": "4e4a07a95dc4b7c47c1ab190880868ce39769d008530060eb10b39242cb5da43",
+  "references/scenario-modeling.md": "01467b341307491017aca734d0149943d342fa94873878678b92d58f8831d6fb",
+  "scripts/validate_skill.py": "5ef8a5c0f10a95ce3cd493f85fdcf86444d044af2af2fc688ed0b6911542e33c"
+}
