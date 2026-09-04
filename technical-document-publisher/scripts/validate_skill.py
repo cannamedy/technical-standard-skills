@@ -18,6 +18,8 @@ required = [
     "examples/activation-examples.md",
     "scripts/validate_publication_structure.py",
     "scripts/validate_publication_visual_structure.py",
+    "scripts/validate_perceptual_publication.py",
+    "scripts/validate_before_after_review.py",
     "scripts/validate_release_manifest.py",
     "tests/test_validator.py",
 ]
@@ -34,7 +36,7 @@ else:
         front = m.group(1)
         if not re.search(r"^name:\s*technical-document-publisher\s*$", front, re.M):
             errors.append("Wrong skill name")
-        if 'version: "0.7.0"' not in front:
+        if 'version: "0.8.0"' not in front:
             errors.append("Wrong version")
 
 for rel in required:
@@ -62,6 +64,12 @@ for phrase in [
     "Font Fallback",
     "Style-first Publication Design",
     "technical-whitepaper",
+    "Perceptual Hierarchy",
+    "Visual Role Identity",
+    "Blind Before/After Review",
+    "VISUAL_MONOTONY_WARNING",
+    "CROSS_RENDERER_NOT_VERIFIED",
+    "PERCEPTUAL_HIERARCHY_AMBIGUOUS",
     "DIRECT_FORMATTING_EXCESSIVE",
     "assessment-question-designer",
     "publication-manifest.json",

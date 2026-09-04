@@ -23,6 +23,12 @@ DOCX → PDF → page images
       ↓
 Page-level Visual QA / Page Rhythm / Visual Density QA
       ↓
+Perceptual Hierarchy / Black-and-White Role Identity
+      ↓
+Neutral Before/After Blind Review (10 page types)
+      ↓
+Cross-renderer transparency / Visual Monotony review
+      ↓
 PUBLICATION CANDIDATE READY FOR HUMAN RELEASE REVIEW
 ```
 
@@ -62,6 +68,16 @@ Every page must be rendered and recorded in a page-level QA report. If visual
 inspection is unavailable, report `automatic visual checks only` and keep the
 artifact at human-release-review status; never claim visual approval by
 sampling only first/middle/last pages.
+
+Perceptual validation has two deliberately separate evidence classes. The
+validator deterministically measures bounded style signals and emits named
+findings such as `TOPIC_BODY_CONTRAST_TOO_LOW`,
+`HEADING_ROLE_COLLAPSE`, and `BLACK_WHITE_HIERARCHY_FAIL`. Human visual
+reasoning then checks whether the rendered page actually communicates the
+intended reading path. A neutral A/B review covers at least ten page types;
+only a stable `YES` result can pass the blind-review gate. A missing second
+renderer is reported as `CROSS_RENDERER_NOT_VERIFIED`, never silently treated
+as cross-renderer proof.
 
 Any blocking gate failure means `PUBLICATION BLOCKED`. Source defects are
 reported separately and are not silently repaired in the publishing task.

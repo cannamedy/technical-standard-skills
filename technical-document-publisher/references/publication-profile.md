@@ -16,9 +16,11 @@ government-form, dense academic-journal, or colorful marketing conventions
 unless the user explicitly selects them.
 
 The profile is a design system, not a fixed set of numbers. Implementations may
-adjust values for a font family or page size, but MUST preserve minimum visual
-contrast: `H1 > H2 > H3 > Body`, H1/H2 bold, meaningful heading spacing, and a
-visibly separate treatment for code, diagrams, tables, and TOC levels.
+adjust values for a font family or page size, but MUST preserve perceptual role
+identity: `Chapter > Major Section > Technical Topic > Local Label > Body`,
+`H1 > H2 > H3 > Body`, H1/H2 bold, meaningful heading spacing, and a visibly
+separate treatment for code, diagrams, tables, and TOC levels. A role that
+differs only by a barely visible font-size delta is not a valid hierarchy.
 
 Recommended default ranges:
 
@@ -35,6 +37,16 @@ Recommended default ranges:
 | Table body | 9–10 pt |
 | Body rhythm | line spacing about 1.25–1.4, paragraph after about 4–6 pt |
 
+Perceptual roles:
+
+| role | default identity |
+|---|---|
+| Chapter | major heading weight, generous but bounded whitespace, optional chapter-start break |
+| Major Section | bold heading with clear size and spacing contrast from topics |
+| Technical Topic | bold topic heading with stable marker/rule or indentation plus visible size/spacing contrast |
+| Local Label | non-navigational anchor with bold/semibold treatment, modest spacing, and optional subtle marker |
+| Body | regular reading text with the baseline body rhythm |
+
 The profile SHOULD define semantic classes where the renderer supports them:
 `Title`, `Subtitle`, `Body`, `Heading 1`–`Heading 6`, `Lead-in`, `Runtime
 Label`, `Question Label`, `Code`, `ASCII Diagram`, `Quote`, `Caption`, `Table
@@ -47,7 +59,7 @@ measured by the visual validator.
 
 - A4 or the selected page size uses moderate margins; page count is subordinate to reading efficiency.
 - Heading styles combine size, weight, spacing, `keep_with_next`, and page-break policy.
-- H1/top-level chapter starts MAY begin a new page; H2/H3 MUST NOT mechanically force page breaks.
+- H1/top-level chapter starts MAY begin a new page; H2/H3 MUST NOT mechanically force page breaks unless the profile maps them to chapter/major-section roles explicitly.
 - Lists use hanging indents, clear nested levels, restrained item spacing, and independent ordered-list restarts.
 - Tables use bold headers, readable contrast, cell padding, repeated headers, semantic widths, light borders, and no decorative heavy grid.
 - Code and ASCII diagrams use monospace, preserved whitespace, block separation, keep-together for short blocks, and safe non-wrapping behavior.
@@ -55,6 +67,10 @@ measured by the visual validator.
 - Header/footer remain smaller and quieter than body text; the cover MAY use a different first-page treatment.
 - Pagination and Page Rhythm QA review orphan headings, isolated captions, short diagram splits, sparse pages, text walls, heading walls, and the final page.
 - Font fallback validation checks CJK, Latin, monospace, and box-drawing glyph availability plus PDF replacement-glyph signals.
+- Black-and-white review MUST confirm that hierarchy remains legible without color; color is auxiliary only.
+- Perceptual-distance, role-collapse, topic/body, local-label/body, chapter/section, and section/topic signals are deterministic aids, not substitutes for visual review.
+- A design-system upgrade MUST include neutral A/B Before/After review and record `YES`, `NO`, or `MIXED`.
+- Page-rhythm review SHOULD report long near-identical runs as `VISUAL_MONOTONY_WARNING`.
 
 ## Profile families
 
@@ -171,6 +187,13 @@ visual:
   hierarchy_gate: true
   page_rhythm_gate: true
   density_gate: true
+  perceptual_hierarchy_gate: true
+  black_and_white_gate: true
+  visual_monotony_gate: true
+  blind_before_after_required: true
+  minimum_topic_body_distance: 0.18
+  minimum_local_label_body_distance: 0.10
+  cross_renderer_policy: report-if-not-verified
 ```
 
 The minimum semantic requirements are independent of visual choices:

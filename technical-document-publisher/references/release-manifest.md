@@ -42,6 +42,10 @@ repair.
     "structural_fidelity": {"status": "PASS", "report": "..."},
     "visual_hierarchy": {"status": "PASS", "report": "..."},
     "typography": {"status": "PASS", "report": "..."},
+    "perceptual_hierarchy": {"status": "PASS", "report": "..."},
+    "visual_monotony": {"status": "PASS", "report": "..."},
+    "before_after_blind_review": {"status": "PASS", "report": "...", "winner": "candidate"},
+    "cross_renderer": {"status": "CROSS_RENDERER_NOT_VERIFIED", "report": "..."},
     "page_rhythm": {"status": "PASS", "report": "..."},
     "toc_heading_list_code_diagram": {"status": "PASS", "report": "..."},
     "visual_fidelity": {"status": "PASS", "report": "...", "page_level_qa": "..."}

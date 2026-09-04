@@ -40,6 +40,23 @@ hierarchy, code/ASCII monospace separation, font availability, and direct
 formatting ratio. Page images remain authoritative for clipping, one-second
 heading recognition, table/code wrapping, and heading-at-page-bottom review.
 
+## Perceptual Hierarchy and Blind Review
+
+Parameter changes are not a perceptual pass. Reviewers MUST compare baseline and candidate pages
+with neutral `A`/`B` labels and answer which side has clearer Chapter, Section, Technical Topic,
+Local Label, and Body roles without being told which side is newer. The comparison MUST include
+mental-map, concepts, object-definition, runtime, principles, boundary, question, table-heavy,
+code/ASCII, and final-page examples. Record `YES`, `NO`, or `MIXED`; only `YES` can pass the
+perceptual gate.
+
+The black-and-white test removes color as evidence. If hierarchy collapses after color removal,
+report `BLACK_WHITE_HIERARCHY_FAIL`. A Technical Topic or Local Label that is only a bold body line
+or a one-half-point size change is not an independent visual role.
+
+Record `VISUAL_MONOTONY_WARNING` for long runs of near-identical density and block rhythm, and
+record `CROSS_RENDERER_NOT_VERIFIED` when only one renderer was exercised. Neither signal authorizes
+inventing diagrams or rewriting technical prose.
+
 Blocking page issues are `BROKEN`, `CLIPPED`, `OVERLAPPED`, `EMPTY_TOC`,
 `MARKDOWN_LEAK`, `LIST_NUMBERING_BROKEN`, `ORPHAN_PAGE`, and
 `SPARSE_FINAL_PAGE`. A document with any blocking page issue is

@@ -1,7 +1,7 @@
-# technical-document-publisher v0.7.0
+# technical-document-publisher v0.8.0
 
 A publication-orchestration skill with source-readiness, assessment, content, structural, visual,
-typography, and page-rhythm release gates.
+typography, perceptual-hierarchy, blind-review, and page-rhythm release gates.
 
 It intentionally does **not** reimplement DOCX engineering.
 
@@ -57,3 +57,8 @@ DOCX/rendering implementation owned by the installed `doc` skill.
 Version 0.7 adds the reusable `technical-whitepaper` Publication Design System,
 Typography/Visual Hierarchy Gate, font-fallback checks, named TOC/list/table/code
 style requirements, and deterministic Page Rhythm and Visual Density signals.
+
+Version 0.8 adds Perceptual Hierarchy, Visual Role Identity, Technical Topic and
+Local Label checks, black-and-white robustness, Visual Monotony signals,
+cross-renderer transparency warnings, and neutral A/B Before/After blind-review
+artifacts for meaningful publication-design upgrades.

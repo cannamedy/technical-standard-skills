@@ -6,7 +6,7 @@ description: >
   repository layout, publication profile, artifact naming, content-fidelity gates, and release workflow.
   It does not implement low-level DOCX manipulation itself and must not rewrite technical content.
 metadata:
-  version: "0.7.0"
+  version: "0.8.0"
   role: "end-to-end-technical-document-release-orchestrator"
 ---
 
@@ -57,6 +57,7 @@ technical-document-publisher
 - Human Readability Gate orchestration through `technical-specification-guide`;
 - Technical Whitepaper Profile and Style-first Publication Design;
 - Typography Hierarchy, Visual Hierarchy, Font Fallback, and Page Rhythm gates;
+- Perceptual Hierarchy, Visual Role Identity, Blind Before/After Review, and Visual Monotony gates;
 - assessment-section discovery and quality-gate routing;
 - invocation expectations for the installed `doc` skill;
 - release-candidate criteria.
@@ -257,6 +258,38 @@ The Visual Hierarchy Gate is separate from Structural Fidelity. A DOCX may have 
 style names and still fail if headings look like body text. A deterministic warning MAY proceed
 only with an evidence-based disposition; a hierarchy order failure, unavailable required semantic
 style, code/diagram font collapse, glyph corruption, or blocking page defect MUST block release.
+
+### 3.6 Perceptual Publication Design
+
+Version 0.8 adds a **PERCEPTUAL VISUAL HIERARCHY** layer. Parameter order alone is insufficient:
+the publisher MUST evaluate the visual identities of Chapter, Major Section, Technical Topic, Local
+Label, and Body roles. The default mapping is `Heading 2` → Chapter, `Heading 3` → Major Section,
+`Heading 4` → Technical Topic, and `Lead-in`/`Runtime Label`/`Question Label` → Local Label when
+the source's semantic structure uses those levels.
+
+The perceptual validator calculates a bounded perceptual-distance signal from size ratio, boldness,
+spacing, indentation, border/rule, shading, and page-break context. It is a deterministic warning
+signal, not an absolute aesthetic truth. It MUST report at least `TOPIC_BODY_CONTRAST_TOO_LOW`,
+`LOCAL_LABEL_BODY_CONTRAST_TOO_LOW`, `SECTION_TOPIC_CONTRAST_TOO_LOW`,
+`CHAPTER_SECTION_CONTRAST_TOO_LOW`, `HEADING_ROLE_COLLAPSE`, and
+`PERCEPTUAL_HIERARCHY_AMBIGUOUS`. A Technical Topic that differs from Body only by a 0.5–1 pt
+font-size change and has no other identity signal MUST fail.
+
+Black-and-white robustness is mandatory: color may assist hierarchy but MUST NOT be its only
+evidence. Deterministic checks cover styles, metrics, rules, spacing, margins, page count, and
+density; visual reasoning covers one-second recognition, technical professionalism, rhythm,
+monotony, and perceived reading burden.
+
+When a design-system upgrade changes presentation, FINAL RELEASE MODE MUST generate a blind
+Before/After page comparison with neutral `A` and `B` labels and review at least ten page types:
+mental map, concepts, object definitions, runtime, principles, boundaries, questions, table-heavy,
+code/ASCII, and final pages. The reviewer MUST answer which side wins without being told which side
+is the candidate. If the answer is `MIXED` or `NO`, the perceptual upgrade is incomplete.
+
+The Page Rhythm gate reports `VISUAL_MONOTONY_WARNING` when long consecutive runs have nearly
+identical density and block rhythm. It MUST NOT require decorative graphics or force semantic prose
+into tables/lists. A single-renderer result MUST carry `CROSS_RENDERER_NOT_VERIFIED` unless another
+renderer has actually been run.
 
 ---
 
@@ -632,10 +665,11 @@ Render
       Page-level Visual QA
 ```
 
-FINAL RELEASE MODE also requires the separate Visual Hierarchy, Typography, Font Fallback, TOC
-Hierarchy, Pagination, Page Rhythm, and Visual Density gates. `PUBLICATION CANDIDATE READY FOR HUMAN
-RELEASE REVIEW` is allowed only when these gates have no blocking defect and the final manifest records
-the deterministic report plus full-page visual QA.
+FINAL RELEASE MODE also requires the separate Visual Hierarchy, Perceptual Hierarchy, Typography,
+Font Fallback, TOC Hierarchy, Pagination, Page Rhythm, Visual Density, Visual Monotony, and
+Before/After Blind Review gates. `PUBLICATION CANDIDATE READY FOR HUMAN RELEASE REVIEW` is allowed
+only when these gates have no blocking defect and the final manifest records the deterministic report,
+blind-review disposition, cross-renderer status, and full-page visual QA.
 
 Use `scripts/validate_publication_structure.py` with the approved Markdown
 and generated DOCX.  It compares heading levels and text, independent list

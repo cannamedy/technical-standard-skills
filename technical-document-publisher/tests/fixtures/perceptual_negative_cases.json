@@ -1,0 +1,10 @@
+{
+  "cases": [
+    {"name": "weak_technical_topic", "expected": "TOPIC_BODY_CONTRAST_TOO_LOW"},
+    {"name": "weak_local_label", "expected": "LOCAL_LABEL_BODY_CONTRAST_TOO_LOW"},
+    {"name": "render_near_identical", "expected": "PERCEPTUAL_UPGRADE_INSUFFICIENT"},
+    {"name": "strong_role_identity", "expected": "PASS"},
+    {"name": "color_only_hierarchy", "expected": "BLACK_WHITE_HIERARCHY_FAIL"},
+    {"name": "decorative_marketing_style", "expected": "TECHNICAL_WHITEPAPER_STYLE_MISMATCH"}
+  ]
+}
