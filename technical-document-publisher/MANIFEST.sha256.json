@@ -20,5 +20,5 @@
   "tests/fixtures/visual_negative_cases.json": "f2853f3321b647f7d9b8e23dd3306d1ce6fb81ec29acbda9b7428426f6aa1cd5",
   "tests/test_release_manifest.py": "3b638385af5107ad6ac278bd53a3abe8fa8bd9ec21148a9c3196d26a11e8f71c",
   "tests/test_validator.py": "2449bd45e075bcfd337e087c1478c9ce90e4ef0cebcbe97ceff48064e4caa4b9",
-  "tests/test_visual_validator.py": "b4b0ae9ff49d922baee64ee1df60f408ffd48f43cd598e0d07913f62f63ec800"
+  "tests/test_visual_validator.py": "18d10f0a8c8f8f57724c84c3b160da6ab9055151f81ff2ae149a408b88b7d6b8"
 }

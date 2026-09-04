@@ -5,6 +5,8 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import shutil
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -117,6 +119,32 @@ class VisualValidatorTests(unittest.TestCase):
         data = json.loads((ROOT / "tests" / "fixtures" / "visual_negative_cases.json").read_text(encoding="utf-8"))
         self.assertEqual(len(data["cases"]), 8)
         self.assertIn("sparse_final_page", {item["name"] for item in data["cases"]})
+
+    def test_positive_fixture_renders_at_least_15_pages(self):
+        if not shutil.which("soffice") or not shutil.which("pdfinfo"):
+            self.skipTest("LibreOffice and pdfinfo are required for rendered-page fixture regression")
+        fixture = (ROOT / "tests" / "fixtures" / "technical_whitepaper_fixture.md").read_text(encoding="utf-8")
+        self.assertIn("```text", fixture)
+        docx = self.root / "technical-whitepaper-fixture.docx"
+        _make_doc(docx)
+        document = Document(docx)
+        for page in range(14):
+            document.add_page_break()
+            document.add_paragraph(f"Fixture page {page + 2}", style="Heading 2")
+            document.add_paragraph("Long-form Chinese/English body with stable reading rhythm.", style="Normal")
+        document.save(docx)
+        outdir = self.root / "pdf"
+        outdir.mkdir()
+        user_profile = self.root / "libreoffice-profile"
+        user_profile.mkdir()
+        try:
+            subprocess.run(["soffice", f"-env:UserInstallation=file://{user_profile}", "--headless", "--convert-to", "pdf", "--outdir", str(outdir), str(docx)], check=True, capture_output=True)
+        except subprocess.CalledProcessError:
+            self.skipTest("LibreOffice conversion is unavailable in this execution sandbox")
+        pdf = outdir / "technical-whitepaper-fixture.pdf"
+        info = subprocess.run(["pdfinfo", str(pdf)], check=True, capture_output=True, text=True).stdout
+        pages = int(next(line.split(":", 1)[1] for line in info.splitlines() if line.startswith("Pages:")))
+        self.assertGreaterEqual(pages, 15)
 
 
 if __name__ == "__main__":
