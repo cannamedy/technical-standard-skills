@@ -6,7 +6,7 @@ description: >
   repository layout, publication profile, artifact naming, content-fidelity gates, and release workflow.
   It does not implement low-level DOCX manipulation itself and must not rewrite technical content.
 metadata:
-  version: "0.6.0"
+  version: "0.7.0"
   role: "end-to-end-technical-document-release-orchestrator"
 ---
 
@@ -55,6 +55,8 @@ technical-document-publisher
 - source-integrity checks;
 - final-release mode and source-readiness orchestration;
 - Human Readability Gate orchestration through `technical-specification-guide`;
+- Technical Whitepaper Profile and Style-first Publication Design;
+- Typography Hierarchy, Visual Hierarchy, Font Fallback, and Page Rhythm gates;
 - assessment-section discovery and quality-gate routing;
 - invocation expectations for the installed `doc` skill;
 - release-candidate criteria.
@@ -221,6 +223,40 @@ The upstream review returns `HUMAN_READABILITY_PASS`, `HUMAN_READABILITY_REVIEW`
 may proceed only when its source-aware disposition, evidence, ownership, and non-blocking rationale
 are recorded in the release manifest. The publisher MUST NOT accept a structurally valid, visually
 polished document whose reader entry or architecture narrative is demonstrably broken.
+
+### 3.5 Technical Whitepaper Publication Design System
+
+When the source is an architecture guide, standard design guide, protocol rationale, engineering
+whitepaper, reference architecture, or interface standard, FINAL RELEASE MODE MUST select the
+`technical-whitepaper` profile unless the user explicitly chooses another family. The profile is
+professional, restrained, readable, long-form friendly, print-friendly, and suitable for
+Chinese-English documents. It MUST NOT silently become brochure, slide-deck, government-form,
+dense academic-journal, or marketing styling.
+
+The design system owns Typography Hierarchy, Heading Hierarchy, Paragraph Rhythm, Whitespace, List
+Formatting, Table Formatting, Code Formatting, ASCII Diagram Formatting, TOC Hierarchy,
+Header/Footer, Pagination, Page Rhythm, Visual Density, and Visual Hierarchy. Page count is
+subordinate to reading efficiency; publication MUST NOT delete technical content or use decorative
+graphics to conceal a layout defect.
+
+The default visual contract is `Cover Title > H1 > H2 > H3 > Body`, with H1/H2/H3 visibly
+distinguishable, H1/H2 bold, moderate heading spacing, body line spacing around 1.25–1.4, body
+paragraph spacing around 4–6 pt, and separate named styles for code, diagrams, tables, lists,
+lead-ins, and TOC 1/2/3. Exact values remain profile-configurable, but a profile MUST declare
+minimum contrast thresholds and font roles for CJK, Latin, monospace, and box-drawing glyphs.
+
+Use `scripts/validate_publication_visual_structure.py` for deterministic style and typography
+checks. It reports `HEADING_SIZE_ORDER_INVALID`, `HEADING_BODY_CONTRAST_TOO_LOW`,
+`HEADING_NOT_BOLD`, `HEADING_SPACING_TOO_LOW`, `TOC_HIERARCHY_INSUFFICIENT`,
+`CODE_BODY_INDISTINGUISHABLE`, `DIRECT_FORMATTING_EXCESSIVE`, font fallback, and PDF density/glyph
+signals. XML checks cannot prove visual comprehension: render DOCX → PDF → PNG and inspect every
+page for one-second heading recognition, text walls, heading walls, sparse pages, orphan blocks,
+list/table/code/diagram separation, TOC scanning, and final-page balance.
+
+The Visual Hierarchy Gate is separate from Structural Fidelity. A DOCX may have the correct Word
+style names and still fail if headings look like body text. A deterministic warning MAY proceed
+only with an evidence-based disposition; a hierarchy order failure, unavailable required semantic
+style, code/diagram font collapse, glyph corruption, or blocking page defect MUST block release.
 
 ---
 
@@ -593,8 +629,13 @@ TOC / Heading / List Fidelity
       ↓
 Render
       ↓
-Page-level Visual QA
+      Page-level Visual QA
 ```
+
+FINAL RELEASE MODE also requires the separate Visual Hierarchy, Typography, Font Fallback, TOC
+Hierarchy, Pagination, Page Rhythm, and Visual Density gates. `PUBLICATION CANDIDATE READY FOR HUMAN
+RELEASE REVIEW` is allowed only when these gates have no blocking defect and the final manifest records
+the deterministic report plus full-page visual QA.
 
 Use `scripts/validate_publication_structure.py` with the approved Markdown
 and generated DOCX.  It compares heading levels and text, independent list

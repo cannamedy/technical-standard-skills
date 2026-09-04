@@ -1,0 +1,12 @@
+{
+  "cases": [
+    {"name": "flat_heading_sizes", "expected": "HEADING_BODY_CONTRAST_TOO_LOW"},
+    {"name": "heading_order_inverted", "expected": "HEADING_SIZE_ORDER_INVALID"},
+    {"name": "same_heading_spacing", "expected": "HEADING_SPACING_TOO_LOW"},
+    {"name": "flat_toc", "expected": "TOC_HIERARCHY_INSUFFICIENT"},
+    {"name": "code_uses_body_font", "expected": "CODE_BODY_INDISTINGUISHABLE"},
+    {"name": "ascii_uses_body_font", "expected": "CODE_BODY_INDISTINGUISHABLE"},
+    {"name": "heading_at_page_bottom", "expected": "PAGE_RHYTHM_SPARSE_PAGE"},
+    {"name": "sparse_final_page", "expected": "PAGE_RHYTHM_SPARSE_PAGE"}
+  ]
+}

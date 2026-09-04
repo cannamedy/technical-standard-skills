@@ -24,6 +24,8 @@ def candidate():
             "source_readiness": {"status": "SOURCE_READY"},
             "human_readability": {"status": "HUMAN_READABILITY_PASS"},
             "content_fidelity": {"status": "PASS"}, "structural_fidelity": {"status": "PASS"},
+            "visual_hierarchy": {"status": "PASS"}, "typography": {"status": "PASS"},
+            "page_rhythm": {"status": "PASS"},
             "visual_fidelity": {"status": "PASS", "page_level_qa": "qa.md"},
         },
         "normative_keyword_delta": {"MUST": 0, "SHOULD": 0, "MAY": 0}, "iterations": 2,

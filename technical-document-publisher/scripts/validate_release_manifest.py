@@ -18,7 +18,8 @@ REQUIRED = (
     ("artifacts", "docx_path"), ("artifacts", "docx_hash"),
     ("artifacts", "pdf_path"), ("artifacts", "pdf_hash"), ("artifacts", "page_count"),
     ("gates", "source_readiness"), ("gates", "human_readability"), ("gates", "content_fidelity"),
-    ("gates", "structural_fidelity"), ("gates", "visual_fidelity"),
+    ("gates", "structural_fidelity"), ("gates", "visual_hierarchy"),
+    ("gates", "typography"), ("gates", "page_rhythm"), ("gates", "visual_fidelity"),
     ("normative_keyword_delta",), ("iterations",),
 )
 

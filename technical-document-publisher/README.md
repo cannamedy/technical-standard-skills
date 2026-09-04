@@ -1,7 +1,7 @@
-# technical-document-publisher v0.6.0
+# technical-document-publisher v0.7.0
 
-A publication-orchestration skill with source-readiness, assessment, content, structural, and visual
-release gates.
+A publication-orchestration skill with source-readiness, assessment, content, structural, visual,
+typography, and page-rhythm release gates.
 
 It intentionally does **not** reimplement DOCX engineering.
 
@@ -53,3 +53,7 @@ Version 0.6 adds the Human Readability Gate and reader-first upstream routing. V
 three distinct fidelity gates, an explicit repair/rebuild loop, and a release
 manifest while retaining the separation between publisher policy and low-level
 DOCX/rendering implementation owned by the installed `doc` skill.
+
+Version 0.7 adds the reusable `technical-whitepaper` Publication Design System,
+Typography/Visual Hierarchy Gate, font-fallback checks, named TOC/list/table/code
+style requirements, and deterministic Page Rhythm and Visual Density signals.

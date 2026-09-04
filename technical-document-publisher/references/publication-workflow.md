@@ -17,9 +17,11 @@ Structural Fidelity Gate
       ↓
 TOC / Heading / List Fidelity
       ↓
+Technical Whitepaper Typography / Visual Hierarchy / Font Fallback Gate
+      ↓
 DOCX → PDF → page images
       ↓
-Page-level Visual QA
+Page-level Visual QA / Page Rhythm / Visual Density QA
       ↓
 PUBLICATION CANDIDATE READY FOR HUMAN RELEASE REVIEW
 ```
@@ -48,6 +50,13 @@ nested list levels.
 The build layer may use heuristics to classify an indented, box-drawn, tree,
 or arrow-heavy fenced block as `ASCII_DIAGRAM`. Classification changes only
 presentation. Source lines, spaces, and line breaks remain unchanged.
+
+For the `technical-whitepaper` profile, repeated presentation decisions MUST
+be encoded as named Word styles (body, heading levels, lead-in, list levels,
+table roles, code, ASCII diagram, TOC levels, header, and footer). The visual
+structure validator is deterministic and reports blocking hierarchy,
+typography, TOC, code/ASCII, font-fallback, and excessive-direct-formatting
+findings before page-image review.
 
 Every page must be rendered and recorded in a page-level QA report. If visual
 inspection is unavailable, report `automatic visual checks only` and keep the

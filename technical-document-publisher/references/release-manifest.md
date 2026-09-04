@@ -40,6 +40,9 @@ repair.
     "assessment": {"status": "NOT_APPLICABLE", "report": null},
     "content_fidelity": {"status": "PASS", "report": "..."},
     "structural_fidelity": {"status": "PASS", "report": "..."},
+    "visual_hierarchy": {"status": "PASS", "report": "..."},
+    "typography": {"status": "PASS", "report": "..."},
+    "page_rhythm": {"status": "PASS", "report": "..."},
     "toc_heading_list_code_diagram": {"status": "PASS", "report": "..."},
     "visual_fidelity": {"status": "PASS", "report": "...", "page_level_qa": "..."}
   },
