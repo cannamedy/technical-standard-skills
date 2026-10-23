@@ -23,6 +23,10 @@ repair.
     "doc": "installed-version-or-toolchain"
   },
   "inputs": {
+    "publication_profile_number": "01-or-02",
+    "publication_profile_id": "registered-profile-id",
+    "publication_profile_version": "1.0.0",
+    "resolved_fonts": {"cjk": "font-name", "latin": "font-name", "monospace": "font-name"},
     "publication_profile_hash": "sha256-or-null",
     "template_hash": "sha256-or-null",
     "build_script_hash": "sha256-or-null"

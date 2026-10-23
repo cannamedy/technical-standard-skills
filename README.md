@@ -1,6 +1,17 @@
-# Technical Standard Skills
+# TSP
 
-Reusable, Agent-neutral Skills for technical standard architecture, engineering contracts, machine-contract projection, implementation planning, contract-driven coding, and publication workflows.
+**Typesetting Profiles（排版配置）**。
+
+排版方式集中在 `technical-document-publisher/profiles/`，技能调用名称仍为
+`technical-document-publisher`。本仓库同时保留现有技术写作、工程契约、实现规划和验证技能。
+
+| 编号 | 排版方式 | 入口 |
+|---|---|---|
+| 01 | 技术白皮书 | [profiles/01](technical-document-publisher/profiles/01/profile.md) |
+| 02 | 中文技术报告横线表版 | [profiles/02](technical-document-publisher/profiles/02/profile.md) |
+
+后续实际增加版式时按 `03`、`04` 依次编号，目录名使用两位数字。
+示例：使用 technical-document-publisher，按 02 排版这份设备选型报告。
 
 包含九个 Skill：
 
@@ -11,7 +22,7 @@ Reusable, Agent-neutral Skills for technical standard architecture, engineering 
 - implementation-design-guide v0.1.0
 - contract-implementation-planner v0.2.1
 - contract-driven-coding v0.1.1
-- technical-document-publisher v0.6.0
+- technical-document-publisher v0.9.0
 - assessment-question-designer v0.2.0
 
 版本：
@@ -23,7 +34,7 @@ Reusable, Agent-neutral Skills for technical standard architecture, engineering 
 - implementation-design-guide v0.1.0
 - contract-implementation-planner v0.2.1
 - contract-driven-coding v0.1.1
-- technical-document-publisher v0.6.0
+- technical-document-publisher v0.9.0
 - assessment-question-designer v0.2.0
 
 推荐工程链：

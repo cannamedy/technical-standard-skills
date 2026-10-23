@@ -1,4 +1,4 @@
-# technical-document-publisher v0.8.0
+# technical-document-publisher v0.9.0
 
 A publication-orchestration skill with source-readiness, assessment, content, structural, visual,
 typography, perceptual-hierarchy, blind-review, and page-rhythm release gates.
@@ -62,3 +62,15 @@ Version 0.8 adds Perceptual Hierarchy, Visual Role Identity, Technical Topic and
 Local Label checks, black-and-white robustness, Visual Monotony signals,
 cross-renderer transparency warnings, and neutral A/B Before/After blind-review
 artifacts for meaningful publication-design upgrades.
+
+
+## 编号排版方式
+
+| 编号 | 名称 | 目录 |
+|---|---|---|
+| 01 | 技术白皮书 | [profiles/01](profiles/01/profile.md) |
+| 02 | 中文技术报告横线表版 | [profiles/02](profiles/02/profile.md) |
+
+例如：使用 `technical-document-publisher`，按 `02` 中文技术报告横线表版生成这份报告。
+通用发布流程共用，具体排版按编号选择；后续依次增加 `03`、`04`，不改动已有编号。
+Version 0.9 separates numbered layout profiles and adds the V4.2-derived Chinese technical report profile.

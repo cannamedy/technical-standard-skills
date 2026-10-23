@@ -10,6 +10,10 @@ Use this skill for:
 - "使用 technical-document-publisher，把这份 Markdown 生成最终可发布 DOCX 和 PDF；自动完成源文档结构审计、题目质量审计、冻结、三层 Fidelity Gate、逐页 QA，并对普通可修复缺陷重建。"
 - "严格按冻结 Markdown 发布，不修改源文档，只输出 DOCX/PDF。"
 
+- "按 01 技术白皮书排版，生成 DOCX/PDF。"
+- "按 02 中文技术报告横线表版排版，保留正文和设备参数。"
+- "沿用 V4.2 版式，使用 technical-document-publisher 的 02 配置。"
+
 Do not use it to:
 
 - 重写技术正文；

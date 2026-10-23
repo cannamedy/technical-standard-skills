@@ -1,0 +1,226 @@
+profile:
+  number: "02"
+  id: zh-cn-technical-report
+  name: 中文技术报告横线表版
+  version: "1.0.0"
+  reference_scope: layout-only
+  implementation: installed-doc-skill-or-project-builder
+
+document:
+  metadata_source: source-or-user
+  preserve_source_content: true
+
+page:
+  size: A4
+  orientation: portrait
+  margins_cm: 2.0
+  content_width_cm: 17.0
+  header_distance_cm: 1.27
+  footer_distance_cm: 0.8
+
+fonts:
+  cjk: LXGW WenKai
+  latin: Times New Roman
+  monospace: DejaVu Sans Mono
+  verify_requested_family: true
+  verify_cjk_coverage: true
+  fallback_policy: explicit-and-recorded
+  rerender_after_fallback: true
+
+roles:
+  chapter_style: Heading 1
+  major_section_style: Heading 2
+  technical_topic_style: Heading 3
+
+title:
+  style: Title
+  size_pt: 24
+  bold: false
+  alignment: center
+  color: "000000"
+  line_spacing_rule: exact
+  line_spacing_pt: 34
+  space_before_pt: 0
+  space_after_pt: 0
+  decorative_rule: false
+
+body:
+  style: Normal
+  font: Times New Roman
+  cjk_font: LXGW WenKai
+  latin_font: Times New Roman
+  size_pt: 12
+  bold: false
+  color: "000000"
+  line_spacing_rule: exact
+  line_spacing_pt: 18
+  paragraph_spacing_pt: 6
+  space_before_pt: 0
+  space_after_pt: 6
+  first_line_indent_cm: 0
+
+headings:
+  h1: {style: "Heading 1", size_pt: 17, bold: true, line_spacing_rule: exact, line_spacing_pt: 22, space_before_pt: 0, space_after_pt: 8, keep_with_next: true}
+  h2: {style: "Heading 2", size_pt: 14, bold: true, line_spacing_rule: exact, line_spacing_pt: 18, space_before_pt: 5, space_after_pt: 3, keep_with_next: true}
+  h3: {style: "Heading 3", size_pt: 13, bold: true, line_spacing_rule: exact, line_spacing_pt: 17, space_before_pt: 6, space_after_pt: 4, keep_with_next: true}
+  numbering_policy: preserve-source-no-duplicate
+  page_break_before: false
+  color: "000000"
+  default_navigation_depth: 3
+
+captions:
+  style: Caption
+  size_pt: 11
+  bold: false
+  line_spacing_rule: exact
+  line_spacing_pt: 15
+  space_before_pt: 3
+  space_after_pt: 3
+  table_position: above
+  keep_with_table_header: true
+  numbering_policy: preserve-source-or-updateable-fields
+
+source_notes:
+  style: Source Note
+  size_pt: 9
+  line_spacing_rule: exact
+  line_spacing_pt: 12
+  space_before_pt: 0
+  space_after_pt: 2
+  table_position: below
+
+tables:
+  style: Horizontal Rules
+  header_style: Table Header
+  body_style: Table Body
+  width_cm: 17.0
+  alignment: center
+  column_width_policy: semantic-fixed
+  autofit: false
+  repeat_header: true
+  split_rows: false
+  row_height_policy: auto
+  font_size_pt: 10
+  line_spacing_rule: exact
+  line_spacing_pt: 14
+  space_before_pt: 0
+  space_after_pt: 0
+  header_bold: true
+  header_fill: none
+  body_fill: none
+  vertical_alignment: center
+  short_field_alignment: center
+  narrative_alignment: left
+  border_color: "000000"
+  top_border_pt: 1.5
+  bottom_border_pt: 1.5
+  header_bottom_border_pt: 0.75
+  inside_horizontal_border_pt: 0.5
+  group_separator_border_pt: 1.0
+  left_border: none
+  right_border: none
+  inside_vertical_border: none
+  cell_padding_top_pt: 2.15
+  cell_padding_bottom_pt: 2.15
+  cell_padding_left_pt: 4.25
+  cell_padding_right_pt: 4.25
+  compact_header_style: Table Header Compact
+  compact_body_style: Table Body Compact
+  compact_font_size_pt: 9.5
+  compact_line_spacing_pt: 12.5
+  compact_selection_policy: whole-table-only
+  oversized_row_policy: explicit-layout-exception-no-content-loss
+
+toc:
+  enabled: true
+  depth: 2
+  title: 目录
+  update_fields: true
+  verify_entries: true
+  require_page_numbers: true
+  leader: dots
+  page_number_alignment: right
+  toc1: {style: "TOC 1", size_pt: 11, bold: true, left_indent_cm: 0}
+  toc2: {style: "TOC 2", size_pt: 10.5, bold: false, left_indent_cm: 0.5}
+  toc3: {style: "TOC 3", size_pt: 10, bold: false, left_indent_cm: 1.0}
+
+lists:
+  ordered_restart_policy: per-markdown-block
+  nesting: preserve-source-indent
+  hanging_indent_cm: 0.5
+  paragraph_spacing_pt: 2
+
+labels:
+  lead_in: Lead-in
+  runtime_label: Runtime Label
+  question_label: Question Label
+  size_pt: 12
+  bold: true
+
+code:
+  font: DejaVu Sans Mono
+  size_pt: 9
+  background: none
+  preserve_whitespace: true
+  keep_together: short-blocks
+  wrapping: preserve-lines
+
+ascii_diagram:
+  font: DejaVu Sans Mono
+  size_pt: 9
+  background: none
+  preserve_whitespace: true
+  keep_together: true
+  fit_to_width: explicit-layout-exception
+
+header:
+  enabled: false
+
+footer:
+  page_numbers: true
+  alignment: center
+  format: PAGE
+  field: PAGE
+  font: Times New Roman
+  size_pt: 12
+  hide_on_cover: true
+  numbering_policy: continuous-document-pages
+
+pagination:
+  orphan_control: true
+  heading_keep_with_next: true
+  keep_heading_lines: true
+  avoid_isolated_heading: true
+  avoid_single_line_page_tail: true
+  avoid_short_final_page: true
+  keep_question_block: true
+  keep_short_diagram: true
+  minimum_tail_fill_policy: "warn; style-only remediation"
+  clipping_policy: recorded-line-spacing-exception-then-rerender
+
+visual:
+  profile_family: zh-cn-technical-report
+  minimum_h1_body_ratio: 1.4
+  minimum_h2_body_ratio: 1.15
+  minimum_h3_body_ratio: 1.08
+  direct_formatting_warning_ratio: 0.35
+  direct_formatting_fail_ratio: 0.75
+  hierarchy_gate: true
+  page_rhythm_gate: true
+  density_gate: true
+  perceptual_hierarchy_gate: true
+  black_and_white_gate: true
+  visual_monotony_gate: true
+  blind_before_after_required: true
+  minimum_topic_body_distance: 0.18
+  minimum_local_label_body_distance: 0.10
+  minimum_section_topic_distance: 0.13
+  cross_renderer_policy: report-if-not-verified
+
+release:
+  content_fidelity_required: true
+  structural_fidelity_required: true
+  page_images_required: true
+  every_page_visual_qa_required: true
+  record_profile_id_version_hash: true
+  record_actual_fonts_and_exceptions: true

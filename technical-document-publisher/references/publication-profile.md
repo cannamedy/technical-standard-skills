@@ -1,83 +1,38 @@
-# Publication Profile v3
+# Publication Profile v4
 
-The publication profile is a presentation contract. It may configure the
-publication artifact, but it must not contain rewritten technical content.
-The concrete format may be YAML or an equivalent profile supported by the
-project build layer.
+排版配置与正文分离。`technical-document-publisher` 保持技能名称不变，
+每一种排版方式保存在 `profiles/` 下独立的两位数字目录中。
 
-## Technical Whitepaper Profile
+## 已登记的排版方式
 
-`technical-whitepaper` is the default family for architecture guides, standard
-design guides, protocol rationale, engineering whitepapers, reference
-architectures, and interface standards. Its visual intent is professional,
-restrained, readable, engineering-oriented, long-form friendly, print-friendly,
-and safe for Chinese-English typography. It does not use brochure, slide-deck,
-government-form, dense academic-journal, or colorful marketing conventions
-unless the user explicitly selects them.
+| 编号 | 名称 | 标识 | 定义 | 配置 |
+|---|---|---|---|---|
+| 01 | 技术白皮书 | `technical-whitepaper` | [profile.md](../profiles/01/profile.md) | [profile.yaml](../profiles/01/profile.yaml) |
+| 02 | 中文技术报告横线表版 | `zh-cn-technical-report` | [profile.md](../profiles/02/profile.md) | [profile.yaml](../profiles/02/profile.yaml) |
 
-The profile is a design system, not a fixed set of numbers. Implementations may
-adjust values for a font family or page size, but MUST preserve perceptual role
-identity: `Chapter > Major Section > Technical Topic > Local Label > Body`,
-`H1 > H2 > H3 > Body`, H1/H2 bold, meaningful heading spacing, and a visibly
-separate treatment for code, diagrams, tables, and TOC levels. A role that
-differs only by a barely visible font-size delta is not a valid hierarchy.
+`profiles/index.json` 是编号、标识、路径及别名的登记表。
+后续实际增加排版方式时依次使用 `03`、`04` 等目录，不预建没有配置的空目录。
+已发布编号不可改用于另一种版式，配置更新应增加对应的配置版本。
+`compact-specification`、`engineering-contract`、`report` 和 `minimal` 仍只是可能的未来名称。
 
-Recommended default ranges:
+## 选择与应用
 
-| role | default range / rule |
-|---|---|
-| Cover title | 24–28 pt |
-| H1 | 18–20 pt, bold |
-| H2 | 15–16 pt, bold |
-| H3 | 12.5–14 pt, bold |
-| H4 | 11–12 pt, bold or semibold |
-| Body | 10.5–11 pt |
-| Lead-in | body size, bold/semibold |
-| Code / ASCII Diagram | 8.5–9.5 pt monospace |
-| Table body | 9–10 pt |
-| Body rhythm | line spacing about 1.25–1.4, paragraph after about 4–6 pt |
+1. 用户指定编号、名称或标识时，按登记表选择；未知编号应报告未登记，不能静默使用默认版式。
+2. 用户没有指定时，沿用该项目已记录的配置。没有既有配置时，架构指南和白皮书采用 `01`；
+   设备选型、技术调研、方案比较等中文报告采用 `02`，在开始生成前说明所选版式。
+3. 直接读取所选目录的 `profile.md` 和 `profile.yaml`。不能只读本索引，也不能将两种版式混合。
+4. 将所选配置复制到项目 `publishing/publication-profile.yaml`，补齐必要元数据和字体，
+   再交给已安装的 `doc` 技能构建。YAML 是发布配置合同，不是本技能自带的 DOCX 渲染器。
+5. 在发布记录中保存编号、标识、配置版本、最终字体和项目配置哈希。通用的内容、结构、
+   目录及逐页检查继续执行；配置编号不改变 FINAL RELEASE / STRICT PUBLISH 工作模式。
 
-Perceptual roles:
+用户选定编号后，该配置的具体视觉要求优先于 `doc`／`documents` 能力的通用视觉默认。
+例如 `02` 的黑色横线、无竖线和无底色表格不得套回通用灰色全边框样式。
+DOCX 能力仍负责实现、渲染和检查，内容与结构保真要求不变。
 
-| role | default identity |
-|---|---|
-| Chapter | major heading weight, generous but bounded whitespace, optional chapter-start break |
-| Major Section | bold heading with clear size and spacing contrast from topics |
-| Technical Topic | bold topic heading with stable marker/rule or indentation plus visible size/spacing contrast |
-| Local Label | non-navigational anchor with bold/semibold treatment, modest spacing, and optional subtle marker |
-| Body | regular reading text with the baseline body rhythm |
+## 通用配置字段示例
 
-The profile SHOULD define semantic classes where the renderer supports them:
-`Title`, `Subtitle`, `Body`, `Heading 1`–`Heading 6`, `Lead-in`, `Runtime
-Label`, `Question Label`, `Code`, `ASCII Diagram`, `Quote`, `Caption`, `Table
-Header`, `Table Body`, `Bullet 1`–`Bullet 3`, `Numbered 1`–`Numbered 3`, `TOC 1`–
-`TOC 3`, `Header`, and `Footer`. Repeated presentation decisions belong in
-named styles; direct run or paragraph formatting is an exception and is
-measured by the visual validator.
-
-## Layout and quality policy
-
-- A4 or the selected page size uses moderate margins; page count is subordinate to reading efficiency.
-- Heading styles combine size, weight, spacing, `keep_with_next`, and page-break policy.
-- H1/top-level chapter starts MAY begin a new page; H2/H3 MUST NOT mechanically force page breaks unless the profile maps them to chapter/major-section roles explicitly.
-- Lists use hanging indents, clear nested levels, restrained item spacing, and independent ordered-list restarts.
-- Tables use bold headers, readable contrast, cell padding, repeated headers, semantic widths, light borders, and no decorative heavy grid.
-- Code and ASCII diagrams use monospace, preserved whitespace, block separation, keep-together for short blocks, and safe non-wrapping behavior.
-- TOC 1/2/3 use descending visual weight, increasing indentation, aligned page numbers, and consistent leader dots.
-- Header/footer remain smaller and quieter than body text; the cover MAY use a different first-page treatment.
-- Pagination and Page Rhythm QA review orphan headings, isolated captions, short diagram splits, sparse pages, text walls, heading walls, and the final page.
-- Font fallback validation checks CJK, Latin, monospace, and box-drawing glyph availability plus PDF replacement-glyph signals.
-- Black-and-white review MUST confirm that hierarchy remains legible without color; color is auxiliary only.
-- Perceptual-distance, role-collapse, topic/body, local-label/body, chapter/section, and section/topic signals are deterministic aids, not substitutes for visual review.
-- A design-system upgrade MUST include neutral A/B Before/After review and record `YES`, `NO`, or `MIXED`.
-- Page-rhythm review SHOULD report long near-identical runs as `VISUAL_MONOTONY_WARNING`.
-
-## Profile families
-
-The first complete family is `technical-whitepaper`. Future families such as
-`compact-specification`, `engineering-contract`, `report`, or `minimal` MAY be
-added, but a publisher MUST NOT silently switch family. Architecture guides
-default to `technical-whitepaper` unless the user selects another style.
+下列 YAML 只说明字段，不能当作第三种版式。具体数值和字体以所选编号目录为准。
 
 ```yaml
 document:

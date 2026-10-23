@@ -123,16 +123,20 @@ def _pdf_signal(path: Path | None) -> dict[str, Any] | None:
 def validate(docx_path: Path, profile_path: Path | None = None, pdf_path: Path | None = None, second_pdf_path: Path | None = None) -> dict[str, Any]:
     document = Document(str(docx_path))
     profile = _profile_text(profile_path)
-    roles = {
-        "Body": _record(document, "Normal"),
-        "Chapter": _record(document, "Heading 2"),
-        "Major Section": _record(document, "Heading 3"),
-        "Technical Topic": _record(document, "Heading 4"),
-        "Local Label": _record(document, "Lead-in"),
-        "Runtime Label": _record(document, "Runtime Label"),
-        "Question Label": _record(document, "Question Label"),
+    role_styles = {
+        "Body": "Normal",
+        "Chapter": str(_value(profile, "chapter_style", "Heading 2")),
+        "Major Section": str(_value(profile, "major_section_style", "Heading 3")),
+        "Technical Topic": str(_value(profile, "technical_topic_style", "Heading 4")),
+        "Local Label": "Lead-in",
+        "Runtime Label": "Runtime Label",
+        "Question Label": "Question Label",
     }
+    roles = {role: _record(document, name) for role, name in role_styles.items()}
     findings: list[Finding] = []
+    for role in ("Chapter", "Major Section", "Technical Topic"):
+        if roles[role] is None:
+            findings.append(Finding("ROLE_STYLE_MISSING", f"{role} style {role_styles[role]!r} is missing", recommendation="define the selected profile's named heading style"))
     body = roles["Body"] or {}
     topic = roles["Technical Topic"] or {}
     section = roles["Major Section"] or {}

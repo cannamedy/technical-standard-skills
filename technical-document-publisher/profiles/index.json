@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "default": "01",
+  "profiles": [
+    {
+      "number": "01",
+      "id": "technical-whitepaper",
+      "name": "技术白皮书",
+      "version": "1.0.0",
+      "definition": "01/profile.md",
+      "config": "01/profile.yaml",
+      "aliases": [
+        "技术白皮书",
+        "白皮书"
+      ]
+    },
+    {
+      "number": "02",
+      "id": "zh-cn-technical-report",
+      "name": "中文技术报告横线表版",
+      "version": "1.0.0",
+      "definition": "02/profile.md",
+      "config": "02/profile.yaml",
+      "aliases": [
+        "中文技术报告",
+        "横线表版",
+        "V4.2版式"
+      ]
+    }
+  ]
+}

@@ -104,6 +104,27 @@ class PerceptualValidatorTests(unittest.TestCase):
         codes = {item["code"] for item in self.report("color-only")["findings"]}
         self.assertIn("TOPIC_BODY_CONTRAST_TOO_LOW", codes)
 
+    def test_profile_can_map_chapters_to_heading_one(self):
+        path = self.root / "report.docx"
+        _make_doc(path)
+        d = Document(path)
+        _style(d, "Heading 1", 21, bold=True, before=20, after=10)
+        d.save(path)
+        self.profile.write_text(
+            "roles:\n  chapter_style: Heading 1\n  major_section_style: Heading 2\n"
+            "  technical_topic_style: Heading 3\n", encoding="utf-8")
+        result = perceptual.validate(path, self.profile)
+        self.assertEqual(result["roles"]["Chapter"]["name"], "Heading 1")
+        self.assertEqual(result["roles"]["Technical Topic"]["name"], "Heading 3")
+
+    def test_missing_selected_role_style_blocks_validation(self):
+        path = self.root / "report.docx"
+        _make_doc(path)
+        self.profile.write_text("roles:\n  chapter_style: Missing Chapter\n", encoding="utf-8")
+        result = perceptual.validate(path, self.profile)
+        self.assertEqual(result["status"], "INVALID")
+        self.assertIn("ROLE_STYLE_MISSING", {item["code"] for item in result["findings"]})
+
 
 if __name__ == "__main__":
     unittest.main()

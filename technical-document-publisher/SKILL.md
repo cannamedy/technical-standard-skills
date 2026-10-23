@@ -6,7 +6,7 @@ description: >
   repository layout, publication profile, artifact naming, content-fidelity gates, and release workflow.
   It does not implement low-level DOCX manipulation itself and must not rewrite technical content.
 metadata:
-  version: "0.8.0"
+  version: "0.9.0"
   role: "end-to-end-technical-document-release-orchestrator"
 ---
 
@@ -229,7 +229,7 @@ polished document whose reader entry or architecture narrative is demonstrably b
 
 When the source is an architecture guide, standard design guide, protocol rationale, engineering
 whitepaper, reference architecture, or interface standard, FINAL RELEASE MODE MUST select the
-`technical-whitepaper` profile unless the user explicitly chooses another family. The profile is
+`technical-whitepaper` profile in `profiles/01/` unless the user explicitly chooses another family. The profile is
 professional, restrained, readable, long-form friendly, print-friendly, and suitable for
 Chinese-English documents. It MUST NOT silently become brochure, slide-deck, government-form,
 dense academic-journal, or marketing styling.
@@ -411,7 +411,28 @@ A publication profile may define:
 
 A publication profile must not contain rewritten technical body content.
 
-Read `references/publication-profile.md`.
+Read `references/publication-profile.md` and select one numbered profile from
+`profiles/index.json`:
+
+| Number | Style | Read before building |
+|---|---|---|
+| `01` | Technical whitepaper / 技术白皮书 | [definition](profiles/01/profile.md), [configuration](profiles/01/profile.yaml) |
+| `02` | Chinese technical report / 中文技术报告横线表版 | [definition](profiles/02/profile.md), [configuration](profiles/02/profile.yaml) |
+
+An explicit user selection takes priority. Otherwise preserve the project's existing profile;
+for new projects choose `01` for architecture guides/whitepapers and `02` for Chinese equipment
+selection, research, and comparison reports, announcing the selection before generation.
+Keep future profiles in `03`, `04`, and subsequent numbered directories. The skill identity remains
+`technical-document-publisher`; a profile directory is not an independently installed skill.
+Record profile number, ID, version, resolved fonts, and final profile hash in the publication manifest.
+All common fidelity and visual gates remain applicable. Unknown profile numbers are errors, not
+permission to silently select another layout.
+
+Treat the user's selected numbered profile as the specific visual contract, taking priority over
+the installed DOCX skill's generic visual defaults. For example, profile `02` requires black
+horizontal table rules, no vertical rules, and no shading; do not replace these with a generic
+gray full-grid table style. The DOCX skill still owns implementation and render inspection, and
+no profile can weaken content or structural fidelity.
 
 ---
 
